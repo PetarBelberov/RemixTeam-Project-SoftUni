@@ -37,7 +37,7 @@ security:
                 # The route name the user can go to in order to logout
                 path: security_logout
                 # The name of the route to redirect to after logging out
-                target: default_index
+                target: musicshare_index
 
 
     access_control:

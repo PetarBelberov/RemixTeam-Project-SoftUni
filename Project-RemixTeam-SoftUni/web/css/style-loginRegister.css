@@ -42,7 +42,7 @@ img.avatar {
 }
 
 .container {
-    margin-top: -55px;
+    margin-top: -35px;
     padding: 5px;
     width: 80%;
 }
@@ -133,13 +133,20 @@ span.psw {
 }
 #id02 .modal-content .container input{
     height: 34px;
+    width: 100%;
+    padding: 12px 20px;
+    margin: 8px 0;
+    display: inline-block;
+    border: 1px solid #ccc;
+    box-sizing: border-box;
 }
+
 #id02 .modal-content .container button{
     height: 44px;
     background-color: #719934;
 }
 #id01 .modal-content{
-    height: 310px
+    height: 325px;
 }
 #id01 .modal-content .container input{
     height: 34px;
@@ -159,4 +166,9 @@ span.psw {
     text-align: center;
     text-transform: uppercase;
     color: white;
+}
+
+.container label {
+    color: white;
+    margin-bottom: 0px;
 }

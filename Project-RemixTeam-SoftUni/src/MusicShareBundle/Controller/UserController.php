@@ -5,6 +5,7 @@ namespace MusicShareBundle\Controller;
 use MusicShareBundle\Entity\User;
 use MusicShareBundle\Form\UserType;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 
@@ -23,7 +24,7 @@ class UserController extends Controller
         // 2) handle the submit (will only happen on POST)
         $form->handleRequest($request);
 
-        if ($form->isSubmitted()) {
+        if ($form->isSubmitted() && $form->isValid()) {
 
             // 3) Encode the password (you could also do this via Doctrine listener)
             $password = $this->get('security.password_encoder')
@@ -40,6 +41,19 @@ class UserController extends Controller
 
             return $this->redirectToRoute('security_login');
         }
-        return $this->render('user/register.html.twig');
+        return $this->render(
+            'user/register.html.twig',
+            array('form' => $form->createView())
+        );
+    }
+
+    /**
+     * @Security("is_granted('IS_AUTHENTICATED_FULLY')")
+     * @Route("/profile", name="user_profile")
+     */
+    public function profileAction()
+    {
+        $user = $this->getUser();
+        return $this->render("user/profile.html.twig", ['user'=>$user]);
     }
 }
