@@ -8,9 +8,10 @@ class FileUploader
 {
     private $targetDir;
 
-    public function __construct($targetDir)
+    public function setDir($dir)
     {
-        $this->targetDir = $targetDir;
+        $this->targetDir = $dir;
+        return $this;
     }
 
     public function upload(UploadedFile $file)

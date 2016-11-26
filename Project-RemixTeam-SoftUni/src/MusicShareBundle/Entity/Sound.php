@@ -33,7 +33,7 @@ class Sound
      * @ORM\Column(type="string")
      *
      * @Assert\NotBlank(message="Please, upload the song as a MP3 file.")
-     * @Assert\File(mimeTypes={ "audio/mpeg" })
+     * @Assert\File(mimeTypes={ "audio/mpeg", "audio/wav", "audio/x-wav", "application/octet-stream" })
      */
     private $file;
 
@@ -43,6 +43,13 @@ class Sound
      * @ORM\Column(name="songAuthor", type="string", length=255)
      */
     private $songAuthor;
+
+    /**
+     * @ORM\Column(type="string")
+     *
+     * @Assert\File(mimeTypes={ "image/bmp", "image/x-windows-bmp", "image/gif", "image/jpeg", "image/pjpeg", "image/png" })
+     */
+    private $coverFile;
 
     /**
      * Get id
@@ -112,6 +119,18 @@ class Sound
     public function getSongAuthor()
     {
         return $this->songAuthor;
+    }
+
+    public function setCoverFile($file)
+    {
+        $this->coverFile = $file;
+
+        return $this;
+    }
+
+    public function getCoverFile()
+    {
+        return $this->coverFile;
     }
 }
 

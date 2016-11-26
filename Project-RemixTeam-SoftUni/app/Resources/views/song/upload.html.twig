@@ -4,54 +4,23 @@
 
 {% block main %}
     <div class="container body-content span=8 offset=2">
-        <div class="col-sm-4 col-sm-offset-4">
+        <div class="col-sm-4 col-sm-offset-3" style="background: #555">
             {{ form_start(form) }}
-                <legend style="color: #555">Upload a song</legend>
-                {{ form_row(form.file) }}
-                {{ form_row(form.songName, { 'attr': {
-                    'placeholder': 'Song\'s name'
-                }})  }}
-                {{ form_row(form.songAuthor, { 'attr': {
-                    'placeholder': 'Song\'s author'
-                }})  }}
+                <legend style="color: #FFF">Upload a song</legend>
 
+                {{ form_row(form.file) }}
+                <br/>
+                {{ form_row(form.coverFile, {'attr': {
+                    'required': false
+                }}) }}
+                <br/>
+                {{ form_row(form.songName, { 'attr': {
+                    'placeholder': 'Song name' }})  }}
+                {{ form_row(form.songAuthor, { 'attr': {
+                    'placeholder': 'Song author' }})  }}
+                <br/>
                 <button type="submit">Upload song</button>
             {{ form_end(form) }}
         </div>
-
-        <!--<form class="form-horizontal" action="" method="post">
-            <fieldset>
-                <!--
-                <div class="form-group">
-                    <label class="col-sm-4 control-label" for="song_file" style="color: #555">Choose file</label>
-
-                    <div class="col-sm-4">
-                        <input class="form-control" id="song_file" name="song[file]" required type="file">
-                    </div>
-                </div>
-
-                <div class="form-group">
-                    <label class="col-sm-4 control-label" for="song_name" style="color: #555">Song name</label>
-
-                    <div class="col-sm-4">
-                        <input class="form-control" id="song_name" name="song[songName]" required>
-                    </div>
-                </div>
-
-                <div class="form-group">
-                    <label class="col-sm-4 control-label" for="song_author" style="color: #555">Song author</label>
-
-                    <div class="col-sm-4">
-                        <input class="form-control" id="song_author" name="song[songAuthor]" required>
-                    </div>
-                </div>
-
-                <div class="col-sm-4 col-sm-offset-4">
-                    <button type="submit">Upload song</button>
-                </div>
-
-
-            </fieldset>
-        </form>-->
     </div>
 {% endblock %}

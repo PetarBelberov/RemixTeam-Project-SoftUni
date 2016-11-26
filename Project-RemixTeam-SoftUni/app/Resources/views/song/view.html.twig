@@ -1,0 +1,21 @@
+{% extends 'base.html.twig' %}
+
+{% block blody_id 'song_view' %}
+
+{% block main %}
+        <div style="text-align: center; font-size: 25px">
+            <img src="{{ cover_directory~'/'~song.coverFile }}" style="width: 200px; height: auto; border: 2px black solid"/>
+            <br/>
+            <span style="text-align: left; margin-left: 25px">
+                <br/>
+                {{ song.songAuthor }} - {{ song.songName }}
+                <br/>
+
+                <object type="application/x-shockwave-flash" data="http://flash-mp3-player.net/medias/player_mp3_maxi.swf" width="400" height="30">
+                    <param name="movie" value="http://flash-mp3-player.net/medias/player_mp3_maxi.swf" />
+                    <param name="bgcolor" value="#ffffff" />
+                    <param name="FlashVars" value="mp3={{ song_directory~'/'~song.file }}&amp;width=400&amp;height=30&amp;showstop=1&amp;showvolume=1&amp;showloading=always&amp;buttonwidth=30&amp;volumewidth=40&amp;volumeheight=15" />
+                </object>
+            </span>
+        </div>
+{% endblock %}

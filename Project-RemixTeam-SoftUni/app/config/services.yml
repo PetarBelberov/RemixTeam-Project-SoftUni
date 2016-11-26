@@ -6,7 +6,6 @@ parameters:
 services:
     app.file_uploader:
         class: MusicShareBundle\FileUploader
-        arguments: ['%songs_directory%']
 #    service_name:
 #        class: AppBundle\Directory\ClassName
 #        arguments: ["@another_service_name", "plain_value", "%parameter_name%"]

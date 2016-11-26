@@ -60,7 +60,7 @@ footer {
 .carousel-inner img {
     width: 100%; /* Set width to 100% */
     margin: auto;
-    min-height:200px;
+    min-height:50px;
 }
 
 /* Hide the carousel text when the screen is less than 600 pixels wide */
@@ -90,7 +90,7 @@ footer {
 }
 
 .item.active{
-    height: 700px;
+    height: 543px;
 }
 
 .container{
@@ -259,10 +259,11 @@ a.catalog:hover {
     text-decoration: overline;
 }
 #titleText{
-    height: 400px;
+    height: 80px;
     display: block;
-    margin-top: -185px;
-    width: 650px;
+    width: 600px;
+    margin-top: 0px;
+    margin-bottom: 200px;
 }
 .buttons{
     height: 350px;
@@ -273,9 +274,9 @@ a.catalog:hover {
 #titleLogo{
     width: 130px;
     display: block;
-    margin-top: -52px;
+    margin-top: 10px;
     min-height: 0px;
-    height: 150px;
+    height: 100px;
 }
 #myNavbar{
     font-size: 15px;

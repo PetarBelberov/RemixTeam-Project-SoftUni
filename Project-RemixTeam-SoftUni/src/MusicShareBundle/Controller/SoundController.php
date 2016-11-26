@@ -27,9 +27,25 @@ class SoundController extends Controller
             $file = $song->getFile();
             $fileName = $this
                 ->get('app.file_uploader')
+                ->setDir($this->get('kernel')->getRootDir()."/../web".$this->getParameter('songs_directory'))
                 ->upload($file);
 
             $song->setFile($fileName);
+
+            $file = $song->getCoverFile();
+            if ($file === null)
+            {
+                $song->setCoverFile($this->getParameter('default_cover'));
+            }
+            else
+            {
+                $fileName = $this
+                    ->get('app.file_uploader')
+                    ->setDir($this->get('kernel')->getRootDir()."/../web".$this->getParameter('covers_directory'))
+                    ->upload($file);
+
+                $song->setCoverFile($fileName);
+            }
 
             $entityManager = $this->getDoctrine()->getManager();
             $entityManager->persist($song);
@@ -54,7 +70,8 @@ class SoundController extends Controller
     {
         $song = $this->getDoctrine()->getRepository(Sound::class)->find($id);
 
-        if ($song === null) {
+        if ($song === null)
+        {
             return $this->render('song/notfound.html.twig');
         }
 
