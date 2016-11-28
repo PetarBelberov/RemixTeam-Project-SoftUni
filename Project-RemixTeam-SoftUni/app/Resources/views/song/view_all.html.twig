@@ -1,0 +1,24 @@
+{% extends 'base.html.twig' %}
+
+{% block main %}
+    <div class="container body-content">
+        <div class="row">
+            {% for song in songs %}
+                <div class="col-md-3">
+                    <article style="margin-bottom: 20px; margin-top: 10px">
+                        <br/>
+                        <img src="{{ cover_directory~'/'~song.coverFile }}" style="width: 200px; height: auto; border: 2px black solid"/>
+                        <br/>
+                        <a href="{{ path('song_view', {'id': song.id}) }}" style="font-size: 25px; color: black">{{ song.songAuthor }} - {{ song.songName }}</a>
+                        <br/>
+                    </article>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+{% endblock %}
+
+{% block body_id %}
+
+{% endblock %}
+

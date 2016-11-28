@@ -2,6 +2,7 @@
 
 namespace MusicShareBundle\Entity;
 
+use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Security\Core\User\UserInterface;
 
@@ -50,6 +51,32 @@ class User implements UserInterface
      */
     private $password;
 
+    /**
+     * @var ArrayCollection
+     *
+     * @ORM\OneToMany(targetEntity="MusicShareBundle\Entity\Sound", mappedBy="uploader")
+     */
+    private $songs;
+
+    /**
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getSongs()
+    {
+        return $this->songs;
+    }
+
+    /**
+     * @param \MusicShareBundle\Entity\Sound $songs
+     *
+     * @return User
+     */
+    public function addSong(Sound $songs)
+    {
+        $this->songs[] = $songs;
+
+        return $this;
+    }
 
     /**
      * Get id

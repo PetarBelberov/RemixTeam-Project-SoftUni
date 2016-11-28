@@ -25,6 +25,8 @@ class SoundController extends Controller
         if ($form->isSubmitted() && $form->isValid())
         {
             $file = $song->getFile();
+            $user = $this->getUser();
+
             $fileName = $this
                 ->get('app.file_uploader')
                 ->setDir($this->get('kernel')->getRootDir()."/../web".$this->getParameter('songs_directory'))
@@ -46,6 +48,10 @@ class SoundController extends Controller
 
                 $song->setCoverFile($fileName);
             }
+
+            $song->setUploader($user);
+            $song->setUploaderID($user->getId());
+            $user->addSong($song);
 
             $entityManager = $this->getDoctrine()->getManager();
             $entityManager->persist($song);
@@ -77,6 +83,20 @@ class SoundController extends Controller
 
         return $this->render('song/view.html.twig', [
             'song' => $song
+        ]);
+    }
+
+    /**
+     * @Route("/catalog", name="print_all_songs")
+     * @param $id
+     * @return \Symfony\Component\HttpFoundation\Response
+     */
+    public function printAllSongs()
+    {
+        $songs = $this->getDoctrine()->getRepository(Sound::class)->findAll();
+
+        return $this->render('song/view_all.html.twig', [
+            'songs' => $songs
         ]);
     }
 }

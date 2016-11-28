@@ -11,55 +11,60 @@
     <link rel="stylesheet" href="{{ asset('css/style-loginRegister.css') }}">
     {% endblock %}
 </head>
-<body>
+<body scroll="no">
+    {% block header %}
+        <header>
+            <nav class="navbar navbar-inverse" role="navigation">
+                <div class="container-fluid">
+                    <div class="navbar-header">
+                        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                        </button>
+                        <a class="navbar-brand" href=""><img src="{{ asset('pictures/remixLogo2.jpg') }}" alt=""> <span id="logoFirstWord">Home</span><span id="logoSecondWord">Page</span></a>
+                    </div>
+                    <div class="collapse navbar-collapse" id="myNavbar">
+                        <ul class="nav navbar-nav navbar-right">
+                            <li><a href="#"><span class="glyphicon glyphicon-info-sign"></span> About Us</a></li>
+                            <li><a href="#"><span class="glyphicon glyphicon-music"></span> Top 10</a></li>
+                            <li><a href="#"><span class="glyphicon glyphicon-phone-alt"></span> Contacts</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </nav>
+        </header>
+    {% endblock %}
 
-<nav class="navbar navbar-inverse">
-    <div class="container-fluid">
-        <div class="navbar-header">
-            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-            </button>
-            <a class="navbar-brand" href=""><img src="{{ asset('pictures/remixLogo2.jpg') }}" alt=""> <span id="logoFirstWord">Home</span><span id="logoSecondWord">Page</span></a>
+    {% block body %}
+        <div id="myCarousel" class="carousel slide" data-ride="carousel">
+            <div class="carousel-inner" role="listbox" scroll="no">
+                <div class="item active">
+                    <img src="{{ asset('pictures/title_Logo.png') }}" id="titleLogo">
+                    <img src="{{ asset('pictures/title.png') }}" id="titleText">
+                    {% block main %}{% endblock %}
+                </div>
+            </div>
         </div>
-        <div class="collapse navbar-collapse" id="myNavbar">
-            <ul class="nav navbar-nav navbar-right">
-                <li><a href="#"><span class="glyphicon glyphicon-info-sign"></span> About Us</a></li>
-                <li><a href="#"><span class="glyphicon glyphicon-music"></span> Top 10</a></li>
-                <li><a href="#"><span class="glyphicon glyphicon-phone-alt"></span> Contacts</a></li>
-            </ul>
-        </div>
-    </div>
-</nav>
+    {% endblock %}
 
-<div id="myCarousel" class="carousel slide" data-ride="carousel">
-    <div class="carousel-inner" role="listbox" scroll="no">
-        <div class="item active">
-            <img src="{{ asset('pictures/title_Logo.png') }}" alt="" id="titleLogo">
-            <img src="{{ asset('pictures/title.png') }}" alt="" id="titleText">
-            {% block main %}{% endblock %}
-        </div>
-    </div>
-</div>
+    <footer class="container-fluid text-center">
 
-<footer class="container-fluid text-center">
+    </footer>
+    {% block javascripts %}
+    <script>
+        function closeModalFunction() {
+            document.getElementById('id01').style.display='none';
+            document.location.href="/";
 
-</footer>
-{% block javascripts %}
-<script>
-    function closeModalFunction() {
-        document.getElementById('id01').style.display='none';
-        document.location.href="/";
-
-    }
-</script>
-<script src="{{ asset('js/loginAndRegister.js') }}" type="text/javascript"></script>
-<script src="{{ asset('js/jquery-1.10.2.js') }}"></script>
-<script src="{{ asset('js/moment.min.js') }}"></script>
-<script src="{{ asset('js/bootstrap.js') }}"></script>
-<script src="{{ asset('js/bootstrap-datetimepicker.min.js') }}"></script>
-{% endblock %}
-</body>
+        }
+    </script>
+    <script src="{{ asset('js/loginAndRegister.js') }}" type="text/javascript"></script>
+    <script src="{{ asset('js/jquery-1.10.2.js') }}"></script>
+    <script src="{{ asset('js/moment.min.js') }}"></script>
+    <script src="{{ asset('js/bootstrap.js') }}"></script>
+    <script src="{{ asset('js/bootstrap-datetimepicker.min.js') }}"></script>
+    {% endblock %}
+    </body>
 </html>
 

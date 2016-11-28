@@ -90,7 +90,8 @@ footer {
 }
 
 .item.active{
-    height: 543px;
+    height: auto;
+    margin-top: 60px;
 }
 
 .container{

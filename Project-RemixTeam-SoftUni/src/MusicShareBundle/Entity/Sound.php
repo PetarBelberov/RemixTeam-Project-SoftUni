@@ -45,11 +45,24 @@ class Sound
     private $songAuthor;
 
     /**
+     * @var User
+     *
+     * @ORM\ManyToOne(targetEntity="MusicShareBundle\Entity\User", inversedBy="songs")
+     * @ORM\JoinColumn(name="uploaderID", referencedColumnName="id")
+     */
+    private $uploader;
+
+    /**
      * @ORM\Column(type="string")
      *
      * @Assert\File(mimeTypes={ "image/bmp", "image/x-windows-bmp", "image/gif", "image/jpeg", "image/pjpeg", "image/png" })
      */
     private $coverFile;
+
+    /**
+     * @ORM\Column(type="integer", name="uploaderID")
+     */
+    private $uploaderID;
 
     /**
      * Get id
@@ -111,6 +124,18 @@ class Sound
         return $this;
     }
 
+    public function setUploaderID($uploader)
+    {
+        $this->uploaderID = $uploader;
+
+        return $this;
+    }
+
+    public function getUploaderID()
+    {
+        return $this->uploaderID;
+    }
+
     /**
      * Get songAuthor
      *
@@ -131,6 +156,18 @@ class Sound
     public function getCoverFile()
     {
         return $this->coverFile;
+    }
+
+    public function setUploader(User $uploader = null)
+    {
+        $this->uploader = $uploader;
+
+        return $this;
+    }
+
+    public function getUploader()
+    {
+        return $this->uploader;
     }
 }
 
