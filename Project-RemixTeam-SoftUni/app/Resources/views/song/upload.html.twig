@@ -3,6 +3,11 @@
 {% block body_id 'song_upload' %}
 
 {% block main %}
+    <style>
+        .navbar-right #logout{
+            display: block;
+        }
+    </style>
     <div class="container body-content span=8 offset=2">
         <div class="col-sm-4 col-sm-offset-3" style="background: #555">
             {{ form_start(form) }}

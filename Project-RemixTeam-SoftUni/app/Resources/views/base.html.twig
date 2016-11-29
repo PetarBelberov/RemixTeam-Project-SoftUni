@@ -29,6 +29,7 @@
                             <li><a href="#"><span class="glyphicon glyphicon-info-sign"></span> About Us</a></li>
                             <li><a href="#"><span class="glyphicon glyphicon-music"></span> Top 10</a></li>
                             <li><a href="#"><span class="glyphicon glyphicon-phone-alt"></span> Contacts</a></li>
+                            <li id="logout"><a href="{{ path('security_logout') }}"><span class="glyphicon glyphicon-log-out"></span> Log Out</a></li>
                         </ul>
                     </div>
                 </div>
@@ -40,6 +41,7 @@
         <div id="myCarousel" class="carousel slide" data-ride="carousel">
             <div class="carousel-inner" role="listbox" scroll="no">
                 <div class="item active">
+                    <h4 id="teamPresents">RemixTeam presents</h4>
                     <img src="{{ asset('pictures/title_Logo.png') }}" id="titleLogo">
                     <img src="{{ asset('pictures/title.png') }}" id="titleText">
                     {% block main %}{% endblock %}

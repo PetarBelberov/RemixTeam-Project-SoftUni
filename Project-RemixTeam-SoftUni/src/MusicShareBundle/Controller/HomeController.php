@@ -9,7 +9,7 @@ use Symfony\Component\Routing\Annotation\Route;
 class HomeController extends Controller
 {
     /**
-     * @Route("/", name="muscshare_index")
+     * @Route("/", name="musicshare_index")
      * @Method("GET")
      */
     public function indexAction()

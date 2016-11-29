@@ -39,6 +39,7 @@
 
             <!--Login form-->
             <div id="id01" class="modal">
+
                 <form class="modal-content animate" action="{{ path('security_login') }}" method="post" >
                     <div class="imgcontainer">
                         <span onclick="closeModalFunction()" class="close" title="Close Modal">&times;</span>
@@ -48,12 +49,12 @@
 
                     <div class="container">
                         <label><b>Username</b></label>
-                        <input type="text" placeholder="Enter Username" name="uname" required>
+                        <input type="text" placeholder="Enter Username" name="_username" required>
 
                         <label><b>Password</b></label>
-                        <input type="password" placeholder="Enter Password" name="psw" required>
-
-                        <button type="submit">Login</button>
+                        <input type="password" placeholder="Enter Password" name="_password" required>
+                        <input type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate') }}"/>
+                        <button type="submit">Log In</button>
                     </div>
                 </form>
             </div>

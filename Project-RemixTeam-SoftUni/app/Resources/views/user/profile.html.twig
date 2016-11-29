@@ -1,11 +1,19 @@
 {% extends 'base.html.twig' %}
 
-{% block body_id 'profile' %}
+{% block body_id 'user_profile' %}
+
 
 {% block main %}
-    <div>
-        {{ user.email }}
-        <br>
-        {{ user.fullName }}
+    <style>
+        .navbar-right #logout{
+            display: block;
+        }
+    </style>
+    <div class="buttons">
+        <ul class="rotateButtons">
+            <li class="rotateButton"><a href="{{ path('upload_song') }}" class="round upload">Upload<span class="round">Share your song with us</span></a></li>
+            <li class="rotateButton"><a href="#" class="round catalog">Catalog<span class="round">Take a look.</span></a></li>
+        </ul>
     </div>
+
 {% endblock %}

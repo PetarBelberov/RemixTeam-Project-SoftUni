@@ -24,14 +24,20 @@ security:
             # This allows the user to login by submitting a username and password
             # Reference: http://symfony.com/doc/current/cookbook/security/form_login_setup.html
             form_login:
+
+
                 # The route name that the login form submits to
                 check_path: security_login
-                # The name of the route where the login form lives
-                # When the user tries to access a protected page, they are redirected here
-                login_path: security_login
+
+                use_referer: true
+                default_target_path: user_profile
+                failure_path: security_login
+
                 # Secure the login form against CSRF
                 # Reference: http://symfony.com/doc/current/cookbook/security/csrf_in_login_form.html
                 csrf_token_generator: security.csrf.token_manager
+
+
 
             logout:
                 # The route name the user can go to in order to logout
@@ -44,4 +50,3 @@ security:
         # this is a catch-all for the admin area
         # additional security lives in the controllers
 #        - { path: '^/(%locale%)/admin', roles: ROLE_ADMIN }
-
