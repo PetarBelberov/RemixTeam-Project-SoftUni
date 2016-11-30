@@ -7,10 +7,12 @@ use MusicShareBundle\Form\SoundType;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
 
 class SoundController extends Controller
 {
     /**
+     * @Security("is_granted('IS_AUTHENTICATED_FULLY')")
      * @Route("/song/upload", name="upload_song")
      * @param Request $request
      * @return \Symfony\Component\HttpFoundation\Response

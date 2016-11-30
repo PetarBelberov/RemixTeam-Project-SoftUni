@@ -56,4 +56,41 @@ class UserController extends Controller
         $user = $this->getUser();
         return $this->render("user/profile.html.twig", ['user'=>$user]);
     }
+
+    /**
+     * @Security("is_granted('IS_AUTHENTICATED_FULLY')")
+     * @Route("/view_profile/{id}", name="view_user_profile")
+     * @param $id
+     * @return \Symfony\Component\HttpFoundation\Response
+     */
+    public function viewProfileAction($id)
+    {
+        $user = $this->getDoctrine()->getRepository(User::class)->find($id);
+
+        if ($user === null)
+        {
+            return $this->redirectToRoute('musicshare_index');
+        }
+
+        return $this->render('user/view_profile.html.twig', [
+            'user' => $user
+        ]);
+    }
+
+    /**
+     * @Security("is_granted('IS_AUTHENTICATED_FULLY')")
+     * @Route("/view_profile/{id}/uploads", name="view_user_uploads")
+     * @param $id
+     * @return \Symfony\Component\HttpFoundation\Response
+     */
+    public function viewUserUploads($id)
+    {
+        $user = $this->getDoctrine()->getRepository(User::class)->find($id);
+        $songs = $user->getSongs()->toArray();
+
+        return $this->render('user/list_uploads.html.twig', [
+            'songs' => $songs,
+            'user' => $user
+        ]);
+    }
 }

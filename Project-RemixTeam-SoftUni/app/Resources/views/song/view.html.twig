@@ -17,10 +17,8 @@
                     <param name="FlashVars" value="mp3={{ song_directory~'/'~song.file }}&amp;width=400&amp;height=30&amp;showstop=1&amp;showvolume=1&amp;showloading=always&amp;buttonwidth=30&amp;volumewidth=40&amp;volumeheight=15" />
                 </object>
             </span>
+            <div style="text-align: right; font-size: 20px; margin-right: 10px">
+                Uploaded by: {{ song.uploader.username }}
+            </div>
         </div>
-    <footer>
-        <div style="text-align: right; font-size: 10px;">
-            {{ article.uploader }}
-        </div>
-    </footer>
 {% endblock %}

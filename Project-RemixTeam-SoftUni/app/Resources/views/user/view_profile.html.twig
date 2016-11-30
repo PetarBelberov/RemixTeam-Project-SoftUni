@@ -1,0 +1,24 @@
+{% extends 'base.html.twig' %}
+
+{% block body_id %}
+
+{% endblock %}
+
+{% block main %}
+    <div style="text-align: center;">
+        <span style="font-size: 50px;">
+            [Avatar]
+            <br/>
+            {{ user.username }}
+            <br/>
+        </span>
+        <span style="text-align: center;font-size: 20px">
+            Full name: {{ user.fullName }}
+            <br/>
+            Email: {{ user.email }}
+            <br/>
+            <a href="{{ path('view_user_uploads', {'id': user.id}) }}">View user songs</a>
+        </span>
+    </div>
+{% endblock %}
+
