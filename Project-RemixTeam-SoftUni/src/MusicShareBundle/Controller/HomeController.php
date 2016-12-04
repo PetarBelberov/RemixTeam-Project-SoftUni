@@ -14,6 +14,10 @@ class HomeController extends Controller
      */
     public function indexAction()
     {
+        if ($this->getUser())
+        {
+            return $this->redirectToRoute('user_profile');
+        }
         return $this->render("musicshare/index.html.twig");
     }
 }

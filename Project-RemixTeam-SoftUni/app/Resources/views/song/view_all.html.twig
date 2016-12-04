@@ -1,6 +1,11 @@
 {% extends 'base.html.twig' %}
 
 {% block main %}
+    <style>
+        .navbar-right #logout{
+            display: block;
+        }
+    </style>
     <div class="container body-content">
         <div class="row">
             {% for song in songs %}

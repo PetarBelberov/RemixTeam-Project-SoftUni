@@ -3,6 +3,11 @@
 {% block blody_id 'song_view' %}
 
 {% block main %}
+    <style>
+        .navbar-right #logout{
+            display: block;
+        }
+    </style>
         <div style="text-align: center; font-size: 25px">
             <img src="{{ cover_directory~'/'~song.coverFile }}" style="width: 200px; height: auto; border: 2px black solid"/>
             <br/>

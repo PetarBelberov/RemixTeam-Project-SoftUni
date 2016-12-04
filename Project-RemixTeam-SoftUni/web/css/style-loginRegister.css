@@ -125,12 +125,35 @@ span.psw {
         width: 100%;
     }
 }
-#id01, #id02{
+#id01, #id02, #id03{
     z-index: 2;
 }
 #id02 .modal-content{
     height: 540px
 }
+#id03 .modal-content{
+    height: 475px
+}
+#id03 .modal-content .imgcontainer{
+    height: 65px;
+}
+#id03 .modal-content .container{
+    margin: 0 auto;
+    width: 80%;
+
+}
+#id03 .modal-content .container button{
+    margin: 0px;
+}
+
+#id03 .modal-content .container div:nth-child(1), #id03 .modal-content .container div:nth-child(3){
+    height:45px;
+}
+
+#id03 .modal-content .container div input{
+    color: #777;
+}
+
 #id02 .modal-content .container input{
     height: 34px;
     width: 100%;
@@ -148,10 +171,10 @@ span.psw {
 #id01 .modal-content{
     height: 325px;
 }
-#id01 .modal-content .container input{
+#id01 .modal-content .container input, #id03 .modal-content .container input{
     height: 34px;
 }
-#id01 .modal-content .container button{
+#id01 .modal-content .container button, #id03 .modal-content .container button{
     height: 44px;
     background-color: #719934;
 }
