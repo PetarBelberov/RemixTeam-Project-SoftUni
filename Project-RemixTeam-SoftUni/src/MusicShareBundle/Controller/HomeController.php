@@ -18,6 +18,10 @@ class HomeController extends Controller
         {
             return $this->redirectToRoute('user_profile');
         }
+<<<<<<< HEAD
+=======
+
+>>>>>>> 0e9b02cc7a39eccf23e29067a586cc1289ff7500
         return $this->render("musicshare/index.html.twig");
     }
 }

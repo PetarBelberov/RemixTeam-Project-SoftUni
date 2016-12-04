@@ -53,7 +53,16 @@ class UserController extends Controller
      */
     public function profileAction()
     {
+<<<<<<< HEAD
         return $this->render("user/profile.html.twig");
+=======
+        //<<<<---------->>>>>
+        //Zashto podavash user-a kato parameter??
+        //<<<<---------->>>>>
+
+        $user = $this->getUser();
+        return $this->render("user/profile.html.twig", ['user'=>$user]);
+>>>>>>> 0e9b02cc7a39eccf23e29067a586cc1289ff7500
     }
 
     /**
