@@ -101,4 +101,42 @@ class SoundController extends Controller
             'songs' => $songs
         ]);
     }
+
+
+    /**
+     * @Route("/song/edit/{id}", name="song_edit")
+     * @Security("is_granted('IS_AUTHENTICATED_FULLY')")
+     *
+     * @param $id
+     * @param Request $request
+     * @return \Symfony\Component\HttpFoundation\Response
+     */
+    public function editSound($id, Request $request)
+    {
+        $song = $this->getDoctrine()->getRepository(Sound::class)->find($id);
+
+        if ($song === null){
+            return $this->redirectToRoute("musicshare_index");
+        }
+
+        $form = $this->createForm(SoundType::class, $song);
+
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid())
+        {
+            $em = $this->getDoctrine()->getManager();
+            $em->persist($song);
+            $em->flush();
+
+            return $this->redirectToRoute('song_view',
+                array('id' => $song->getId()));
+        }
+
+        return $this->render('song/edit.html.twig',
+            array(
+                'song' => $song,
+                'form' => $form->createView(),
+            ));
+    }
 }
