@@ -143,6 +143,7 @@ footer {
     100% {transform: rotate(-360deg);}
 }
 
+
 .round {
     display: block;
     position: absolute;
@@ -294,4 +295,8 @@ a.upload{
 }
 .round.upload span{
     background-color: #154a77;
+}
+.uploaded{
+    text-align: center;
+    font-size: 15px;
 }

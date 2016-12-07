@@ -33,7 +33,7 @@ class Sound
     /**
      * @ORM\Column(type="string")
      *
-     * @Assert\NotBlank(message="Please, upload the song as a MP3 file.")
+     *
      * @Assert\File(mimeTypes={ "audio/mpeg", "audio/wav", "audio/x-wav", "application/octet-stream" })
      */
     private $file;
