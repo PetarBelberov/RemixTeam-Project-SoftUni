@@ -1,0 +1,9 @@
+.navbar-right #logout{
+    display: block;
+}
+#id03 .modal-content .container div:nth-child(1), #id03 .modal-content .container div:nth-child(3){
+    display: none;
+}
+#id03 .modal-content {
+    height: 383px;
+}

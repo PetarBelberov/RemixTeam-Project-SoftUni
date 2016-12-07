@@ -104,20 +104,21 @@ class SoundController extends Controller
 
 
     /**
-     * @Route("/song/edit/{id}", name="song_edit")
+     * @Route("/song/delete/{id}", name="song_delete")
      * @Security("is_granted('IS_AUTHENTICATED_FULLY')")
      *
      * @param $id
      * @param Request $request
      * @return \Symfony\Component\HttpFoundation\Response
      */
-    public function editSound($id, Request $request)
+    public function deleteAction($id, Request $request)
     {
         $song = $this->getDoctrine()->getRepository(Sound::class)->find($id);
 
         if ($song === null){
             return $this->redirectToRoute("musicshare_index");
         }
+
 
         $form = $this->createForm(SoundType::class, $song);
 
@@ -126,14 +127,13 @@ class SoundController extends Controller
         if ($form->isSubmitted() && $form->isValid())
         {
             $em = $this->getDoctrine()->getManager();
-            $em->persist($song);
+            $em->remove($song);
             $em->flush();
 
-            return $this->redirectToRoute('song_view',
-                array('id' => $song->getId()));
+            return $this->redirectToRoute('musicshare_index');
         }
 
-        return $this->render('song/edit.html.twig',
+        return $this->render('song/delete.html.twig',
             array(
                 'song' => $song,
                 'form' => $form->createView(),
