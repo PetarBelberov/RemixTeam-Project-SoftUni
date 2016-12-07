@@ -1,0 +1,10 @@
+{% extends 'base.html.twig' %}
+
+{% block main %}
+    <div class="container">
+        {{ form_start(form) }}
+            {{ form_row(form.name) }}
+            <button type="submit">Create PlayList</button>
+        {{ form_end(form) }}
+    </div>
+{% endblock %}

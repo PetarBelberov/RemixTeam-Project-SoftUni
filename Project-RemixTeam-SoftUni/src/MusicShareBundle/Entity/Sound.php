@@ -2,6 +2,7 @@
 
 namespace MusicShareBundle\Entity;
 
+use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
 
@@ -63,6 +64,16 @@ class Sound
      * @ORM\Column(type="integer", name="uploaderID")
      */
     private $uploaderID;
+
+    /**
+     * @var ArrayCollection
+     *
+     * @ORM\ManyToMany(targetEntity="MusicShareBundle\Entity\PlayList")
+     * @ORM\JoinTable(name="playlist_songs",
+     *     joinColumns={@ORM\JoinColumn(name="song_id", referencedColumnName="id")},
+     *     inverseJoinColumns={@ORM\JoinColumn(name="playListID", referencedColumnName="id")})
+     */
+    private $playLists;
 
     /**
      * Get id

@@ -59,6 +59,13 @@ class User implements UserInterface
     private $songs;
 
     /**
+     * @var ArrayCollection
+     *
+     * @ORM\OneToMany(targetEntity="MusicShareBundle\Entity\PlayList", mappedBy="owner")
+     */
+    private $playLists;
+
+    /**
      * @return \Doctrine\Common\Collections\Collection
      */
     public function getSongs()
@@ -74,6 +81,27 @@ class User implements UserInterface
     public function addSong(Sound $songs)
     {
         $this->songs[] = $songs;
+
+        return $this;
+    }
+
+
+    /**
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getPlayLists()
+    {
+        return $this->playLists;
+    }
+
+    /**
+     * @param \MusicShareBundle\Entity\PlayList $playList
+     *
+     * @return User
+     */
+    public function addPlayList(PlayList $playList)
+    {
+        $this->playLists[] = $playList;
 
         return $this;
     }
