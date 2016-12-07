@@ -14,7 +14,7 @@ class SoundType extends AbstractType
     {
         $builder
             ->add('file', FileType::class, array('data_class' => null))
-            ->add('coverFile', FileType::class, array('data_class' => null))
+            ->add('coverFile', FileType::class, array('data_class' => null, 'required' => false))
             ->add('songName', TextType::class)
             ->add('songAuthor', TextType::class);
     }
