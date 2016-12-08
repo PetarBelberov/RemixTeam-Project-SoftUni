@@ -4,6 +4,9 @@ namespace MusicShareBundle\Entity;
 
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
+use Doctrine\ORM\Mapping\JoinColumn;
+use Doctrine\ORM\Mapping\JoinTable;
+use Doctrine\ORM\Mapping\ManyToMany;
 use Symfony\Component\Security\Core\User\UserInterface;
 
 /**
@@ -64,6 +67,17 @@ class User implements UserInterface
      * @ORM\OneToMany(targetEntity="MusicShareBundle\Entity\PlayList", mappedBy="owner")
      */
     private $playLists;
+
+    /**
+     * @var ArrayCollection
+     *
+     * @ManyToMany(targetEntity="MusicShareBundle\Entity\Role")
+     * @JoinTable(name="users_roles",
+     *       joinColumns={@JoinColumn(name="user_id", referencedColumnName="id")},
+     *       inverseJoinColumns={@JoinColumn(name="role_id", referencedColumnName="id")}
+     *       )
+     */
+    private $roles;
 
     /**
      * @return \Doctrine\Common\Collections\Collection
@@ -231,7 +245,42 @@ class User implements UserInterface
      */
     public function getRoles()
     {
-        return [];
+        $stringRoles = [];
+        foreach ($this->roles as $role)
+        {
+            /** @var $role Role */
+            $stringRoles[] = is_string($role) ? $role : $role->getRole();
+        }
+        return $stringRoles;
+    }
+
+    /**
+     * @param \MusicShareBundle\Entity\Role $role
+     *
+     * @return User
+     */
+    public function addRole(Role $role)
+    {
+        $this->roles[] = $role;
+
+        return $this;
+    }
+
+    /**
+     * @param Sound $song
+     * @return bool
+     */
+    public function isAuthor(Sound $sound)
+    {
+        return $sound->getUploaderID() == $this->getId();
+    }
+
+    /**
+     * @return bool
+     */
+    public  function isAdmin()
+    {
+        return in_array("ROLE_ADMIN", $this->getRoles());
     }
 
     /**
@@ -259,6 +308,13 @@ class User implements UserInterface
 
     public function __toString() {
         return $this->username;
+    }
+
+    //Constructor
+    public function __construct()
+    {
+        $this->songs = new ArrayCollection();
+        $this->roles = new ArrayCollection();
     }
 }
 

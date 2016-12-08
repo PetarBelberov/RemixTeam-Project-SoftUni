@@ -284,9 +284,7 @@ a.catalog:hover {
     font-size: 15px;
     font-family: Verdana,sans-serif;
 }
-.navbar-right #logout{
-    display: none;
-}
+
 a.upload{
     background-color: #85b4dc;
     border-color: #337ab7;
@@ -299,4 +297,27 @@ a.upload{
 .uploaded{
     text-align: center;
     font-size: 15px;
+}
+#listUsers{
+    margin-top: -100px;
+    padding: 0px;
+}
+.well{
+    background-color: #a6c7a7;
+}
+#deleteEmail, #deleteName{
+    width: 33.33333333%;
+}
+#deleteAdminForm{
+    width:80%;
+}
+#deleteForm{
+    width: 80%;
+    margin: 0 auto;
+}
+.form-group label{
+    text-align: initial;
+}
+.form-group button:last-child{
+    background-color: #387138;
 }

@@ -2,6 +2,7 @@
 
 namespace MusicShareBundle\Controller;
 
+use MusicShareBundle\Entity\Role;
 use MusicShareBundle\Entity\User;
 use MusicShareBundle\Form\UserType;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
@@ -30,6 +31,11 @@ class UserController extends Controller
             $password = $this->get('security.password_encoder')
                 ->encodePassword($user, $user->getPassword());
             $user->setPassword($password);
+
+            $roleRepository = $this->getDoctrine()->getRepository(Role::class);
+            $userRole = $roleRepository->findOneBy(['name' => 'ROLE_USER']);
+
+            $user->addRole($userRole);
 
             // 4) save the User!
             $em = $this->getDoctrine()->getManager();

@@ -119,6 +119,13 @@ class SoundController extends Controller
             return $this->redirectToRoute("musicshare_index");
         }
 
+        //Check the current user if he is the author or admin
+        $currentUser = $this->getUser();
+
+        if (!$currentUser->isAuthor($song) && !$currentUser->isAdmin())
+        {
+            return $this->redirectToRoute("muscshare_index");
+        }
 
         $form = $this->createForm(SoundType::class, $song);
 

@@ -3,11 +3,7 @@
 {% block blody_id 'song_view' %}
 
 {% block main %}
-    <style>
-        .navbar-right #logout{
-            display: block;
-        }
-    </style>
+
         <div style="text-align: center; font-size: 25px">
             <img src="{{ cover_directory~'/'~song.coverFile }}" style="width: 200px; height: auto; border: 2px black solid"/>
             <br/>
@@ -25,9 +21,17 @@
             <div style="text-align: right; font-size: 20px; margin-right: 10px" >
                 <p class="uploaded">Uploaded by: {{ song.uploader.username }}</p>
             </div>
-            <div>
-                <a href="{{ path('song_delete', {'id': song.id}) }}" class="glyphicon glyphicon-trash"></a>
-            </div>
+            <div class="footer">
 
+                {% if app.getUser() and (app.getUser().isAuthor(song) or app.getUser().isAdmin()) %}
+                <div>
+                    <a href="{{ path('song_delete', {'id': song.id}) }}" class="glyphicon glyphicon-trash"></a>
+                </div>
+                {% endif %}
+
+                <div>
+                    <a href="{{ path('print_all_songs')}}">&laquo; back</a>
+                </div>
+            </div>
         </div>
 {% endblock %}

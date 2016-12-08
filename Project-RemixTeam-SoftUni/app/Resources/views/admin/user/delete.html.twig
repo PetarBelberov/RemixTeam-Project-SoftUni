@@ -1,0 +1,30 @@
+{% extends 'base.html.twig' %}
+
+    {% block main %}
+        <div class="container body-content span=8 offset=2"  >
+            <div class="well" id="deleteAdminForm">
+                <form class="form-horizontal" action="{{ path('admin_user_delete',{'id' : user.id}) }}" method="post" id="deleteForm">
+                    <fieldset>
+                        <legend>Delete User - {{ user.fullName }}</legend>
+                        <div class="form-group">
+                            <label class="col-sm-4 control-label" for="user_email">Email</label>
+                                <input class="form-control" id="user_email" value="{{ user.email }}" name="user_edit[email]" required type="email" disabled>
+
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-4 control-label" for="user_fullName">Full Name</label>
+                                <input type="text" class="form-control" id="user_fullName" value="{{ user.fullName }}" name="user_edit[fullName]" disabled>
+                        </div>
+
+                        {{ form_row(form._token) }}
+                        <div class="form-group">
+
+                                <button type="submit" class="btn btn-primary">Submit</button>
+                                <button type="submit" class="btn btn-primary"><a href="{{ path('admin_users') }}"></a>Cancel</button>
+
+                        </div>
+                    </fieldset>
+                </form>
+            </div>
+        </div>
+{% endblock %}
