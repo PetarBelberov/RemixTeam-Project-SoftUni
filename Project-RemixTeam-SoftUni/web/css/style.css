@@ -310,6 +310,7 @@ a.upload{
 }
 #deleteAdminForm{
     width:80%;
+    margin: 0 auto;
 }
 #deleteForm{
     width: 80%;
