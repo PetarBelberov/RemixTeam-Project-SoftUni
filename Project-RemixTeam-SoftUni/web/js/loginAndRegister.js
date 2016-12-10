@@ -8,11 +8,11 @@ window.onclick = function(event) {
     if (event.target == modal1 || event.target == modal2) {
         modal1.style.display = "none";
         modal2.style.display = "none";
-        window.location.href='/';
+        window.history.pushState("", "", '/');
     }
     else if (event.target == modal3){
         modal3.style.display = "none";
-        window.location.href='/profile';
+        window.history.pushState("", "", '/profile');
     }
 }
 

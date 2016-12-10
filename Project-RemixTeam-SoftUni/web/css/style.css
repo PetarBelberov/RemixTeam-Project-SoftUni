@@ -57,6 +57,11 @@ footer {
     padding: 25px;
 }
 
+.carousel-inner {
+    width: 75%;
+    margin: auto;
+}
+
 .carousel-inner img {
     width: 100%; /* Set width to 100% */
     margin: auto;
@@ -91,7 +96,9 @@ footer {
 
 .item.active{
     height: auto;
-    margin-top: 80px;
+    width: 95%;
+    margin: 0 auto;
+    margin-top: 65px;
 }
 
 .container{
@@ -309,8 +316,12 @@ a.upload{
     width: 33.33333333%;
 }
 #deleteAdminForm{
+    background-color: #1b1111;
     width:80%;
     margin: 0 auto;
+}
+.form-horizontal fieldset legend {
+    color: white;
 }
 #deleteForm{
     width: 80%;
@@ -321,4 +332,14 @@ a.upload{
 }
 .form-group button:last-child{
     background-color: #387138;
+}
+.col-sm-4.control-label{
+    text-align: left;
+}
+.form-group a{
+    background-color: #387138;
+    width: 100%;
+}
+.form-group a:hover{
+    background-color: #345034;
 }
