@@ -42,7 +42,8 @@
     <script>
         function closeModalFunction() {
             document.getElementById('id03').style.display='none';
-            document.location.href="/profile";
+            window.history.replaceState( {} , '/profile' );
+            window.history.back();
 
         }
     </script>

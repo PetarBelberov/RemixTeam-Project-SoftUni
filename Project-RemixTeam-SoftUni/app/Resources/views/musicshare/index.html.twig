@@ -2,12 +2,85 @@
 
 {% block main %}
 
+    <!--Login form-->
+    <div id="id01" class="modal">
+        <form class="modal-content animate" action="{{ path('security_login') }}" method="post" >
+            <div class="imgcontainer">
+                <span onclick="closeModalFunctionLogin()" class="close" title="Close Modal">&times;</span>
+                <img src="{{ asset('pictures/remixLogo2.jpg') }}" alt="Avatar" class="avatar">
+                <p class="formText">Login</p>
+            </div>
+
+            <div class="container">
+                <label><b>Username</b></label>
+                <input type="text" placeholder="Enter Username" name="_username" required>
+
+                <label><b>Password</b></label>
+                <input type="password" placeholder="Enter Password" name="_password" required>
+
+                <input type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate') }}"/>
+
+                <button type="submit">Log In</button>
+            </div>
+        </form>
+    </div>
+
+    <!--Registration form-->
+
+    <<!--Registration form-->
+
+    <div id="id02" class="modal">
+        <form class="modal-content animate" action="{{ path('user_register') }}" method="post" >
+            <div class="imgcontainer">
+                <span onclick="closeModalFunctionRegister()" class="close" title="Close Modal">&times;</span>
+                <img src="{{ asset('pictures/remixLogo2.jpg') }}" alt="Avatar" class="avatar">
+                <p class="formText">Registration</p>
+            </div>
+
+            <div class="container">
+                <label><b>Full Name</b></label>
+                <input type="text" placeholder="Enter Full Name" name="form[fullName]" value="" required>
+
+                <label><b>Username</b></label>
+                <input type="text" placeholder="Enter Username" name="form[username]" value="" required>
+
+                <label><b>Email</b></label>
+                <input type="text" placeholder="Enter Password" name="form[email]" value="" required>
+
+                <label><b>Password</b></label>
+                <input type="password" placeholder="Enter Password" name="form[password.first]" value="" required>
+
+                <label><b>Confirm Password</b></label>
+                <input type="password" placeholder="Confirm Password" name="form[password.second]" value="" required>
+
+
+                <button type="submit">Log In</button>
+            </div>
+        </form>
+    </div>
+
+
     <div class="buttons">
         <ul class="rotateButtons">
-            <li class="rotateButton"><a href="{{ path('security_login') }}" class="round login">Login<span class="round">If you already have an account.</span></a></li>
-            <li class="rotateButton"><a href="{{ path('user_register') }}" class="round register">Register<span class="round">If you don't have an account. </span></a></li>
+            <li class="rotateButton"><a href="#" onclick="document.getElementById('id01').style.display='block'; return false;" class="round login">Login<span class="round">If you already have an account.</span></a></li>
+            <li class="rotateButton"><a href="#" onclick="document.getElementById('id02').style.display='block'; return false;" class="round register">Register<span class="round">If you don't have an account. </span></a></li>
             <li class="rotateButton"><a href="{{ path('print_all_songs') }}" class="round catalog">Catalog<span class="round">Take a look.</span></a></li>
         </ul>
     </div>
 
+    <script>
+        function closeModalFunctionLogin() {
+            document.getElementById('id01').style.display='none';
+            window.history.replaceState( {} , '/' );
+
+        }
+
+    </script>
+    <script>
+        function closeModalFunctionRegister() {
+            document.getElementById('id02').style.display='none';
+            window.history.replaceState( {} , '/' );
+
+        }
+    </script>
 {% endblock %}

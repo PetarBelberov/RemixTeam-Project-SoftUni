@@ -12,15 +12,18 @@ use Symfony\Component\HttpFoundation\Request;
 
 class UserController extends Controller
 {
+
     /**
-     * @Route("/register", name="user_register")
+     * @Route("/", name="user_register")
      * @param Request $request
      * @return \Symfony\Component\HttpFoundation\Response
      */
     public function registerAction(Request $request)
     {
+
         $user = new User();
         $form = $this->createForm(UserType::class, $user);
+
 
         // 2) handle the submit (will only happen on POST)
         $form->handleRequest($request);

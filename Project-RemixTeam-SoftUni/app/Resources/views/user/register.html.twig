@@ -5,7 +5,7 @@
     <div id="id02" class="modal">
         {{ form_start(form, {'attr': {'class': 'modal-content animate'}}) }}
             <div class="imgcontainer">
-                <span onclick="closeModalFunction()" class="close" title="Close Modal">&times;</span>
+                <span onclick="closeModalFunctionRegister()" class="close" title="Close Modal">&times;</span>
                 <img src="{{ asset('pictures/remixLogo2.jpg') }}" alt="Avatar" class="avatar">
                 <p class="formText">Registration</p>
             </div>
@@ -41,9 +41,10 @@
 
 {% block javascripts %}
     <script>
-        function closeModalFunction() {
+        function closeModalFunctionRegister() {
             document.getElementById('id02').style.display='none';
-            document.location.href="/";
+            window.history.replaceState( {} , '/' );
+            window.history.back();
         }
     </script>
     <script type="text/javascript">

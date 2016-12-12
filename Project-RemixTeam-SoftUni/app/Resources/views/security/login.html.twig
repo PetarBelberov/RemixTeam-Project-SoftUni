@@ -26,8 +26,8 @@
     <div class="buttons">
 
         <ul class="rotateButtons">
-            <li class="rotateButton"><a href="#" class="round login" onclick="document.getElementById('id01').style.display='block'">Login<span class="round">If you already have an account.</span></a></li>
-            <li class="rotateButton"><a href="#" class="round register" onclick="document.getElementById('id02').style.display='block'">Register<span class="round">If you don't have an account. </span></a></li>
+            <li class="rotateButton"><a href="#" class="round login">Login<span class="round">If you already have an account.</span></a></li>
+            <li class="rotateButton"><a href="#" class="round register">Register<span class="round">If you don't have an account. </span></a></li>
             <li class="rotateButton"><a href="#" class="round catalog">Catalog<span class="round">Take a look.</span></a></li>
         </ul>
     </div>
@@ -36,12 +36,16 @@
     <script>
         function closeModalFunction() {
             document.getElementById('id01').style.display='none';
-            document.location.href="/";
+            window.history.replaceState( {} , '/' );
+            window.history.back();
+
         }
     </script>
+
     <script type="text/javascript">
         document.getElementById('id01').style.display='block';
     </script>
+
 {% endblock %}
 
 {% endblock %}

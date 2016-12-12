@@ -2,6 +2,7 @@
 
 namespace MusicShareBundle\Controller;
 
+use MusicShareBundle\Form\UserType;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 
@@ -13,6 +14,7 @@ class SecurityController extends Controller
     public function login()
     {
         return $this->render("security/login.html.twig");
+
     }
 
     /**
