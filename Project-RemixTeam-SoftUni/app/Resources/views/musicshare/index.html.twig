@@ -27,36 +27,35 @@
 
     <!--Registration form-->
 
-    <<!--Registration form-->
+    <!--Registration form-->
 
     <div id="id02" class="modal">
-        <form class="modal-content animate" action="{{ path('user_register') }}" method="post" >
-            <div class="imgcontainer">
-                <span onclick="closeModalFunctionRegister()" class="close" title="Close Modal">&times;</span>
-                <img src="{{ asset('pictures/remixLogo2.jpg') }}" alt="Avatar" class="avatar">
-                <p class="formText">Registration</p>
-            </div>
+        {{ form_start(form, {'attr': {'class': 'modal-content animate'}}) }}
+        <div class="imgcontainer">
+            <span onclick="closeModalFunctionRegister()" class="close" title="Close Modal">&times;</span>
+            <img src="{{ asset('pictures/remixLogo2.jpg') }}" alt="Avatar" class="avatar">
+            <p class="formText">Registration</p>
+        </div>
 
-            <div class="container">
-                <label><b>Full Name</b></label>
-                <input type="text" placeholder="Enter Full Name" name="form[fullName]" value="" required>
+        <div class="container">
+            {{ form_row(form.fullName, { 'attr': {
+                'placeholder': 'Enter Name'} }) }}
 
-                <label><b>Username</b></label>
-                <input type="text" placeholder="Enter Username" name="form[username]" value="" required>
+            {{ form_row(form.username, { 'attr': {
+                'placeholder': 'Enter Username'} }) }}
 
-                <label><b>Email</b></label>
-                <input type="text" placeholder="Enter Password" name="form[email]" value="" required>
+            {{ form_row(form.email, { 'attr': {
+                'placeholder': 'Enter Email'} }) }}
 
-                <label><b>Password</b></label>
-                <input type="password" placeholder="Enter Password" name="form[password.first]" value="" required>
+            {{ form_row(form.password.first, { 'attr': {
+                'placeholder': 'Enter Password'} }) }}
 
-                <label><b>Confirm Password</b></label>
-                <input type="password" placeholder="Confirm Password" name="form[password.second]" value="" required>
+            {{ form_row(form.password.second, { 'attr': {
+                'placeholder': 'Confirm Password'} }) }}
 
-
-                <button type="submit">Log In</button>
-            </div>
-        </form>
+            <button type="submit">Register</button>
+        </div>
+        {{ form_end(form) }}
     </div>
 
 
