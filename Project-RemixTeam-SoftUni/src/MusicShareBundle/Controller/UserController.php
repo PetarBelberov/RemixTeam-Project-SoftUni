@@ -4,6 +4,7 @@ namespace MusicShareBundle\Controller;
 
 use MusicShareBundle\Entity\Role;
 use MusicShareBundle\Entity\User;
+use MusicShareBundle\Form\SoundType;
 use MusicShareBundle\Form\UserType;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
@@ -62,7 +63,13 @@ class UserController extends Controller
      */
     public function profileAction()
     {
-        return $this->render("user/profile.html.twig");
+
+
+        $form = $this->createForm(SoundType::class);
+
+        return $this->render("user/profile.html.twig", [
+            'form' => $form->createView()
+        ]);
     }
 
     /**

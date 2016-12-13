@@ -4,8 +4,8 @@
 
 {% block main %}
 
-        <div style="text-align: center; font-size: 25px">
-            <img src="{{ cover_directory~'/'~song.coverFile }}" style="width: 200px; height: auto; border: 2px black solid"/>
+        <div id="songContent">
+            <img src="{{ cover_directory~'/'~song.coverFile }}" id="coverFile"/>
             <br/>
             <span style="text-align: left; margin-left: 25px">
                 <br/>
@@ -18,7 +18,7 @@
                     <param name="FlashVars" value="mp3={{ song_directory~'/'~song.file }}&amp;width=400&amp;height=30&amp;showstop=1&amp;showvolume=1&amp;showloading=always&amp;buttonwidth=30&amp;volumewidth=40&amp;volumeheight=15" />
                 </object>
             </span>
-            <div style="text-align: right; font-size: 20px; margin-right: 10px" >
+            <div id="uploadedBy" >
                 <p class="uploaded">Uploaded by: {{ song.uploader.username }}</p>
             </div>
             <div class="footer">

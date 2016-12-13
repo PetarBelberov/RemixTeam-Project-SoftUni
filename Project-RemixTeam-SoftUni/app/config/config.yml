@@ -9,7 +9,7 @@ parameters:
     locale: en
     songs_directory: '/uploads/songs'
     covers_directory: '/uploads/covers'
-    default_cover: 'default.jpg'
+    default_cover: 'watermelon-defaultCover.jpg'
 
 framework:
     #esi:             ~

@@ -6,6 +6,7 @@ use MusicShareBundle\Entity\Sound;
 use MusicShareBundle\Form\SoundType;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
 
@@ -97,6 +98,10 @@ class SoundController extends Controller
     {
         $songs = $this->getDoctrine()->getRepository(Sound::class)->findAll();
 
+        if (!$songs) {
+            return new Response('There is no content to be displayed');
+
+        }
         return $this->render('song/view_all.html.twig', [
             'songs' => $songs
         ]);

@@ -343,3 +343,18 @@ a.upload{
 .form-group a:hover{
     background-color: #345034;
 }
+#songContent{
+    text-align: center;
+    font-size: 25px;
+    margin-top: -83px;
+}
+#uploadedBy{
+    text-align: right;
+    font-size: 20px;
+    margin-right: 10px;
+}
+#coverFile{
+    width: 250px;
+    height: auto;
+    border: 2px black solid;
+}
