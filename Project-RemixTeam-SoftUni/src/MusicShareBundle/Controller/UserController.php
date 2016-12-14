@@ -63,8 +63,6 @@ class UserController extends Controller
      */
     public function profileAction()
     {
-
-
         $form = $this->createForm(SoundType::class);
 
         return $this->render("user/profile.html.twig", [

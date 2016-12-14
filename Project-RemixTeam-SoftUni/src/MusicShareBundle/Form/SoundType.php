@@ -13,8 +13,8 @@ class SoundType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('file', FileType::class, array('data_class' => null))
-            ->add('coverFile', FileType::class, array('data_class' => null, 'required' => false))
+            ->add('file', FileType::class)
+            ->add('coverFile', FileType::class, array('required' => false))
             ->add('songName', TextType::class)
             ->add('songAuthor', TextType::class);
     }
@@ -24,10 +24,5 @@ class SoundType extends AbstractType
         $resolver->setDefaults(array(
             'data_class' => 'MusicShareBundle\Entity\Sound',
         ));
-    }
-
-    public function getName()
-    {
-        return 'music_share_bundle_sound_type';
     }
 }
