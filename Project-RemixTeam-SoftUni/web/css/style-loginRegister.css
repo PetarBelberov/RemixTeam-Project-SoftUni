@@ -128,6 +128,10 @@ span.psw {
         width: 100%;
     }
 }
+#id03{
+    margin-top: -100px;
+    padding-bottom: 35px;
+}
 #id01, #id02, #id03{
     z-index: 2;
 }

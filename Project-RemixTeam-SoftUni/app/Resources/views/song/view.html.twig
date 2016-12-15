@@ -12,10 +12,10 @@
                 {{ song.songAuthor }} - {{ song.songName }}
                 <br/>
 
-                <object type="application/x-shockwave-flash" data="http://flash-mp3-player.net/medias/player_mp3_maxi.swf" width="400" height="30">
+                <object type="application/x-shockwave-flash" data="http://flash-mp3-player.net/medias/player_mp3_maxi.swf" >
                     <param name="movie" value="http://flash-mp3-player.net/medias/player_mp3_maxi.swf" />
                     <param name="bgcolor" value="#ffffff" />
-                    <param name="FlashVars" value="mp3={{ song_directory~'/'~song.file }}&amp;width=400&amp;height=30&amp;showstop=1&amp;showvolume=1&amp;showloading=always&amp;buttonwidth=30&amp;volumewidth=40&amp;volumeheight=15" />
+                    <param name="FlashVars" id="" value="mp3={{ song_directory~'/'~song.file }}&amp;width=400&amp;height=30&amp;showstop=1&amp;showvolume=1&amp;showloading=always&amp;buttonwidth=30&amp;volumewidth=40&amp;volumeheight=15" />
                 </object>
             </span>
             <div id="uploadedBy" >
@@ -30,7 +30,7 @@
                 {% endif %}
 
                 <div>
-                    <a href="{{ path('print_all_songs')}}">&laquo; back</a>
+                    <a href="javascript:history.back()">&laquo; back</a>
                 </div>
             </div>
         </div>

@@ -1,46 +1,13 @@
 {% extends 'base.html.twig' %}
 
-{% block body_id 'user_profile' %}
-
 {% block main %}
-
-    <!--Upload form-->
-    <div id="id03" class="modal">
-        <form name="sound" action="{{ path('upload_song') }}" method="post" class="modal-content animate" enctype="multipart/form-data">
-            <div class="imgcontainer">
-                <span onclick="closeModalFunctionUpload()" class="close" title="Close Modal">×</span>
-                <img src="/pictures/remixLogo2.jpg" alt="Avatar" class="avatar">
-                <p class="formText">Upload</p>
-            </div>
-
-            <div class="container">
-                <div><label for="sound_file" class="required">File</label><input type="file" id="sound_file" name="sound[file]" required="required" class="uploadFile"></div>
-                <br>
-                <div><label for="sound_coverFile">Cover file</label><input type="file" id="sound_coverFile" name="sound[coverFile]" class="uploadFile"></div>
-                <br>
-                <div><label for="sound_songName" class="required">Song name</label><input type="text" id="sound_songName" name="sound[songName]" required="required" placeholder="Song name"></div>
-                <div><label for="sound_songAuthor" class="required">Song author</label><input type="text" id="sound_songAuthor" name="sound[songAuthor]" required="required" placeholder="Song author"></div>
-                <br>
-                <button type="submit">Upload song</button>
-            </div>
-            <input type="hidden" id="sound__token" name="sound[_token]" value="b9LLG0Ii_XZxrMNX412xbWoZLzcmeTyeyelT8p5ZghE">
-        </form>
-    </div>
 
     <div class="buttons">
         <ul class="rotateButtons">
-            <li class="rotateButton"><a href="#" onclick="document.getElementById('id03').style.display='block'; return false;" class="round upload">Upload<span class="round">Share your song with us</span></a></li>
+            <li class="rotateButton"><a href="{{ path('upload_song') }}" class="round upload">Upload<span class="round">Share your song with us</span></a></li>
             <li class="rotateButton"><a href="{{ path('print_all_songs') }}" class="round catalog">Catalog<span class="round">Take a look.</span></a></li>
         </ul>
     </div>
 
-    {% block javascripts %}
-        <script>
-            function closeModalFunctionUpload() {
-                document.getElementById('id03').style.display='none';
-                window.history.replaceState( {} , '/profile' );
 
-            }
-        </script>
-    {% endblock %}
 {% endblock %}
