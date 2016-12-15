@@ -194,7 +194,9 @@ footer {
     -o-transform: rotate(-360deg);
     transform: rotate(-360deg);
 }
-
+#uploadedBy a{
+    border-top: none;
+}
 a.register {
     background-color: rgba(239,57,50,1);
     color: #333;
@@ -308,6 +310,7 @@ a.upload{
 #listUsers{
     margin-top: -100px;
     padding: 0px;
+    width: 70%;
 }
 .well{
     background-color: #a6c7a7;
@@ -357,4 +360,70 @@ a.upload{
     width: 250px;
     height: auto;
     border: 2px black solid;
+}
+#coverList{
+    width: 50px;
+    min-height: 35px;
+}
+#listSongs:hover {
+    cursor:pointer;
+    background-color: white;
+}
+#listSongs {
+    background-color: rgba(94, 99, 15, 0.38);
+}
+
+#wellAdmin{
+    padding-top: 0;
+    background-color: rgba(0, 136, 204, 0.28);
+}
+#wellCatalog{
+    padding-top: 0;
+    background-color: rgba(94, 99, 15, 0.67);
+}
+
+.listTitle{
+    text-align: center;
+    padding-bottom: 12px;
+}
+tbody{
+    color: black;
+}
+object{
+    width: 400px;
+    height: 30px;
+}
+#listSongs td{
+    border-top: none;
+}
+#uploaderTd, #uploaderLabel{
+    border-top: none;
+}
+#catalogRows:hover{
+    background-color: red;
+}
+
+#uploaderTd a {
+    color: blue;
+}
+#uploaderRow:hover{
+    background-color: transparent;
+}
+.col-md-3{
+    margin-right: 10%;
+}
+.uploadForm{
+    background-color: #131212;
+    padding-top: 20px;
+    width: 50%;
+    margin: 0 auto;
+    border-radius: 6px;
+    border-top-left-radius: 6px;
+    border-top-right-radius: 6px;
+    border-bottom-right-radius: 6px;
+    border-bottom-left-radius: 6px;
+    height: 517px;
+}
+#deleteUsername{
+    color: black;
 }
