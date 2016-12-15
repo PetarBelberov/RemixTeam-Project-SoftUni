@@ -180,5 +180,24 @@ class Sound
     {
         return $this->uploader;
     }
+
+    public function getPlayLists()
+    {
+        return $this->playLists;
+    }
+
+    public function addToPlayList($playList)
+    {
+        $this->playLists[] = $playList;
+
+        return $this;
+    }
+
+    public function setPlayLists($playLists)
+    {
+        $this->playLists = $playLists;
+
+        return $this;
+    }
 }
 

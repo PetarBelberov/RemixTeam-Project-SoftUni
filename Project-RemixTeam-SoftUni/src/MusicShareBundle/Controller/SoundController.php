@@ -5,6 +5,7 @@ namespace MusicShareBundle\Controller;
 use MusicShareBundle\Entity\Sound;
 use MusicShareBundle\Form\SoundType;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -99,7 +100,9 @@ class SoundController extends Controller
         $songs = $this->getDoctrine()->getRepository(Sound::class)->findAll();
 
         if (!$songs) {
-            return new Response('There is no content to be displayed');
+            return $this->render('error.html.twgi', [
+                'error' => 'There is no content to be displayed'
+            ]);
 
         }
         return $this->render('song/view_all.html.twig', [
@@ -121,15 +124,18 @@ class SoundController extends Controller
         $song = $this->getDoctrine()->getRepository(Sound::class)->find($id);
 
         if ($song === null){
-            return $this->redirectToRoute("musicshare_index");
+            return $this->render('error.html.twig', [
+                'error' => ' 404: Song not found.'
+            ]);
         }
 
         //Check the current user if he is the author or admin
         $currentUser = $this->getUser();
 
-        if (!$currentUser->isAuthor($song) && !$currentUser->isAdmin())
-        {
-            return $this->redirectToRoute("muscshare_index");
+        if (!$currentUser->isAuthor($song) && !$currentUser->isAdmin()) {
+            return $this->render('error.html.twig', [
+                'error' => ' 403: Access denied. You have no permission to perform this action!'
+            ]);
         }
 
         $form = $this->createForm(SoundType::class, $song);

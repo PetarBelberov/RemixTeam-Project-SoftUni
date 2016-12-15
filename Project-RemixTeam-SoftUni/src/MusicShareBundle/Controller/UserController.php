@@ -80,9 +80,10 @@ class UserController extends Controller
     {
         $user = $this->getDoctrine()->getRepository(User::class)->find($id);
 
-        if ($user === null)
-        {
-            return $this->redirectToRoute('musicshare_index');
+        if ($user === null) {
+            return $this->render('error.html.twig', [
+                'error' => ' 404: User not found.'
+            ]);
         }
 
         return $this->render('user/view_profile.html.twig', [

@@ -2,6 +2,7 @@
 
 namespace MusicShareBundle\Entity;
 
+use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -35,7 +36,7 @@ class PlayList
     private $owner;
 
     /**
-     * @var Sound
+     * @var ArrayCollection
      *
      * @ORM\ManyToMany(targetEntity="MusicShareBundle\Entity\Sound", mappedBy="playLists")
      */
@@ -106,6 +107,25 @@ class PlayList
     public function getName()
     {
         return $this->name;
+    }
+
+    public function getSongs()
+    {
+        return $this->songs;
+    }
+
+    public function addSong($song)
+    {
+        $this->songs[] = $song;
+
+        return $this;
+    }
+
+    public function setSongs($songs)
+    {
+        $this->songs = $songs;
+
+        return $this;
     }
 }
 
