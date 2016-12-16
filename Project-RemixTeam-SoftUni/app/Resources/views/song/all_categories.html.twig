@@ -1,0 +1,19 @@
+{% extends 'base.html.twig' %}
+
+{% block main %}
+    <div class="container body-content">
+        <div class="row">
+            {% for category in categories %}
+                <div class="col-md-6">
+                    <header>
+                        <h2>
+                            <a href="{{ path('category_songs', {'id': category.id}) }}">
+                                {{ category.name }} ({{ category.songs.count }})
+                            </a>
+                        </h2>
+                    </header>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+{% endblock %}
