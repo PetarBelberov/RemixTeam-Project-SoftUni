@@ -427,3 +427,6 @@ object{
 #deleteUsername{
     color: black;
 }
+.glyphicon-trash{
+    margin-right: 25px;
+}

@@ -23,15 +23,22 @@
             </div>
             <div class="footer">
 
-                {% if app.getUser() and (app.getUser().isAuthor(song) or app.getUser().isAdmin()) %}
+                {% if app.getUser() %}
+
                 <div>
-                    <a href="{{ path('song_delete', {'id': song.id}) }}" class="glyphicon glyphicon-trash"></a>
+                    <a class="glyphicon glyphicon-download" href="{{ asset('uploads/songs/') }}{{ song.file }}" download>download</a>
                 </div>
                 {% endif %}
 
-                <div>
-                    <a href="javascript:history.back()">&laquo; back</a>
-                </div>
+
+                {% if app.getUser() and (app.getUser().isAuthor(song) or app.getUser().isAdmin()) %}
+                    <div>
+                        <a href="{{ path('song_delete', {'id': song.id}) }}" class="glyphicon glyphicon-trash">remove</a>
+                    </div>
+                {% endif %}
+
+
+
             </div>
         </div>
 {% endblock %}
