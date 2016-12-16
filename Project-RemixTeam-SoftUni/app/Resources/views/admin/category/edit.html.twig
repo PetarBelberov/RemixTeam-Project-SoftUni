@@ -1,0 +1,29 @@
+{% extends 'base.html.twig' %}
+
+{% block main %}
+    <div class="container body-content span=8 offset=2">
+        <div class="well">
+            <form class="form-horizontal" action="{{ path('admin_categories_edit', {'id': category.id}) }}" method="POST">
+                <fieldset>
+                    <legend>Edit Category</legend>
+
+                    <div class="form-group">
+                        <label class="col-sm-4 control-label" for="article_title">Category Name</label>
+                        <div class="col-sm-4 ">
+                            <input type="text" class="form-control" id="article_title" placeholder="Category Name" name="category[name]" value="{{ category.name }}">
+                        </div>
+                    </div>
+
+                    {{ form_row(form._token) }}
+
+                    <div class="form-group">
+                        <div class="col-sm-4 col-sm-offset-4">
+                            <a class="btn btn-default" href="{{ path('admin_categories') }}">Cancel</a>
+                            <button type="submit" class="btn btn-primary">Submit</button>
+                        </div>
+                    </div>
+                </fieldset>
+            </form>
+        </div>
+    </div>
+{% endblock %}

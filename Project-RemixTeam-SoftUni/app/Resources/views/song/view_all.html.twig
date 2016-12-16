@@ -1,52 +1,21 @@
+
+
 {% extends 'base.html.twig' %}
 
 {% block main %}
-
-    <div class="container body-content" id="listUsers">
-        <div class="well" id="wellCatalog">
-            <h2 class="listTitle">Catalog</h2>
-            <div class="row">
-                <table class="table table-striped table-hover ">
-                    <thead>
-                    <tr>
-                        <th>Song Name</th>
-                        <th>Song Author</th>
-                        <th>Cover</th>
-                    </tr>
-                    </thead>
-                    <tbody>
-
-                    {% for song in songs %}
-
-                    <tr>
-                    <tr id="catalogRows">
-
-                        <tr onclick="document.location = '{{ path('song_view', {'id': song.id}) }}';" id="listSongs">
-                            <td>{{ song.songName }}</td>
-                            <td>{{ song.songAuthor }}</td>
-                            <td><img src="{{ cover_directory~'/'~song.coverFile }}" id="coverList"/></td>
-                        </tr>
-                        <tr id="uploaderRow">
-                            <th id="uploaderLabel">Uploader: </th>
-                            <td id="uploaderTd"><a href="{{ path('view_user_uploads', {'id': song.uploader.id}) }}" id="uploaderLink">{{ song.uploader }}</a></td>
-                        </tr>
-                    </tr>
-
-                    {% endfor %}
-                    </tbody>
-                </table>
-            </div>
-        </div>
-        <div class="footer">
-            <div>
-                <a href="{{ path('print_all_songs')}}">&laquo; back</a>
-            </div>
+    <div class="container body-content">
+        <div class="row">
+            {% for category in categories %}
+                <div class="col-md-6">
+                    <header>
+                        <h2>
+                            <a href="{{ path('category_songs', {'id': category.id}) }}">
+                                {{ category.name }} ({{ category.songs.count }})
+                            </a>
+                        </h2>
+                    </header>
+                </div>
+            {% endfor %}
         </div>
     </div>
-
 {% endblock %}
-
-{% block body_id %}
-
-{% endblock %}
-

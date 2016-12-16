@@ -18,6 +18,12 @@
                             <label class="col-sm-4 control-label" for="user_fullName">Song Author</label>
                             <input type="text" class="form-control" id="user_fullName" value="{{ song.songAuthor }}" name="user_edit[fullName]" disabled>
                         </div>
+                        <div class="form-group">
+                            <label class="col-sm-4 control-label" for="article_category">Category</label>
+                            <div class="col-sm-6">
+                                {{ form_widget(form.category, { 'attr':{'readonly':'readonly'}}) }}
+                            </div>
+                        </div>
 
                         {{ form_row(form._token) }}
                         <div class="form-group">
