@@ -2,6 +2,8 @@
 
 namespace MusicShareBundle\Form;
 
+use MusicShareBundle\Entity\Category;
+use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\FileType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
@@ -16,7 +18,10 @@ class SoundType extends AbstractType
             ->add('file', FileType::class, array('data_class' => null))
             ->add('coverFile', FileType::class, array('data_class' => null, 'required' => false))
             ->add('songName', TextType::class)
-            ->add('songAuthor', TextType::class);
+            ->add('songAuthor', TextType::class)
+            ->add('category', EntityType::class,[
+                 'class' => Category::class
+            ]);
     }
 
     public function configureOptions(OptionsResolver $resolver)

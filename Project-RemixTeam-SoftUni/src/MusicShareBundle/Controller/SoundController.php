@@ -2,6 +2,7 @@
 
 namespace MusicShareBundle\Controller;
 
+use MusicShareBundle\Entity\Category;
 use MusicShareBundle\Entity\Sound;
 use MusicShareBundle\Form\SoundType;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
@@ -93,16 +94,36 @@ class SoundController extends Controller
     }
 
     /**
+     * @Route("/categories", name="print_all_categories")
+     * @param $id
+     * @return \Symfony\Component\HttpFoundation\Response
+     */
+    public function printAllCategories()
+    {
+        $categories = $this->getDoctrine()->getRepository(Category::class)->findAll();
+
+        if (!$categories) {
+            return new Response('There is no content to be displayed');
+
+        }
+        return $this->render('song/all_categories.html.twig',
+            ['categories' => $categories
+        ]);
+    }
+
+
+    /**
      * @Route("/catalog", name="print_all_songs")
      * @param $id
      * @return \Symfony\Component\HttpFoundation\Response
      */
     public function printAllSongs()
     {
+        $categories = $this->getDoctrine()->getRepository(Category::class)->findAll();
         $songs = $this->getDoctrine()->getRepository(Sound::class)->findAll();
 
         if (!$songs) {
-            return $this->render('error.html.twgi', [
+            return $this->render('error.html.twig', [
                 'error' => 'There is no content to be displayed'
             ]);
 
@@ -160,4 +181,22 @@ class SoundController extends Controller
             ));
     }
 
+    //categories
+    /**
+     * @Route("/category/{id}", name="category_songs")
+     * @param $id
+     *
+     * @return \Symfony\Component\HttpFoundation\Response
+     */
+
+    public function listSongs($id)
+    {
+        $category = $this->getDoctrine()
+            ->getRepository(Category::class)
+            ->find($id);
+
+        $songs = $category->getSongs()->toArray();
+        return $this->render('song/list.html.twig',
+            ['songs'=>$songs]);
+    }
 }

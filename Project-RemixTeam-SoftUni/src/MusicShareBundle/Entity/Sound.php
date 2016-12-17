@@ -199,5 +199,45 @@ class Sound
 
         return $this;
     }
+
+    /**
+     * @return int
+     */
+    public function getCategoryId() : int
+    {
+        return $this->categoryId;
+    }
+
+    /**
+     * @param int $categoryId
+     */
+    public function setCategoryId($categoryId)
+    {
+        $this->categoryId = $categoryId;
+    }
+
+    /**
+     * @var Category
+     *
+     * @ORM\ManyToOne(targetEntity="MusicShareBundle\Entity\Category", inversedBy="songs")
+     * @ORM\JoinColumn(name="category_id", referencedColumnName="id")
+     */
+    private $category;
+
+    /**
+     * @return Category
+     */
+    public function getCategory()
+    {
+        return $this->category;
+    }
+
+    /**
+     * @param Category $category
+     */
+    public function setCategory($category)
+    {
+        $this->category = $category;
+    }
 }
 
