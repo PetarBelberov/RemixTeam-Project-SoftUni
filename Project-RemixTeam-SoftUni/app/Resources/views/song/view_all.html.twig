@@ -13,33 +13,26 @@
                     <tr>
                         <th>Song Name</th>
                         <th>Song Author</th>
+                        <th>Category</th>
                         <th>Cover</th>
-
                     </tr>
                     </thead>
                     <tbody>
 
                     {% for song in songs %}
-
                         <tr>
                         <tr id="catalogRows">
-
                         <tr onclick="document.location = '{{ path('song_view', {'id': song.id}) }}';" id="listSongs">
                             <td>{{ song.songName }}</td>
                             <td>{{ song.songAuthor }}</td>
+                            <td>{{ song.category }}</td>
                             <td><img src="{{ cover_directory~'/'~song.coverFile }}" id="coverList"/></td>
                         </tr>
+
                         <tr id="uploaderRow">
-
-
                             <th id="uploaderLabel">Uploader: </th>
-
                             <td id="uploaderTd"><a href="{{ path('view_user_uploads', {'id': song.uploader.id}) }}" id="uploaderLink">{{ song.uploader }}</a></td>
                         </tr>
-                        </tr>
-
-
-
 
                     {% endfor %}
                     </tbody>

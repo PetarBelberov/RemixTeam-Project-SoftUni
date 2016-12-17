@@ -2,27 +2,22 @@
 {% extends 'base.html.twig' %}
 
 {% block main %}
-    <div class="container body-content span=8 offset=2">
-        <div class="well">
-            <form class="form-horizontal" action="{{ path('admin_categories_delete', {'id': category.id}) }}"
-                  method="POST">
+    <div class="container body-content span=8 offset=2" id="deleteCategories">
+        <div class="well" id="deleteAdminForm">
+            <form class="form-horizontal" action="{{ path('admin_categories_delete', {'id': category.id}) }}" id="deleteForm" method="POST">
                 <fieldset>
                     <legend>Delete Category</legend>
-
                     <div class="form-group">
-                        <label class="col-sm-4 control-label" for="article_title">Category Name</label>
-                        <div class="col-sm-4 ">
-                            <input type="text" class="form-control" id="article_title" placeholder="Category Name" name="category[name]" value="{{ category.name }}" disabled>
-                        </div>
+                        <label class="col-sm-4 control-label" for="song_category" id="labelName">Category Name</label>
+                        <input class="form-control" id="song_category" value="{{ category.name }}"  disabled>
                     </div>
 
                     {{ form_row(form._token) }}
-
                     <div class="form-group">
-                        <div class="col-sm-4 col-sm-offset-4">
-                            <a class="btn btn-default" href="{{ path('admin_categories') }}">Cancel</a>
-                            <button type="submit" class="btn btn-primary">Submit</button>
-                        </div>
+
+                        <button type="submit" class="btn btn-primary">Submit</button>
+                        <a href="{{ path('admin_categories') }}" class="btn btn-primary" id="cancelButton">Cancel</a>
+
                     </div>
                 </fieldset>
             </form>

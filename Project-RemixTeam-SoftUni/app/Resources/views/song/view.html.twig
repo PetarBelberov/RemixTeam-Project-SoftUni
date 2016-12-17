@@ -18,26 +18,26 @@
                     <param name="FlashVars" id="" value="mp3={{ song_directory~'/'~song.file }}&amp;width=400&amp;height=30&amp;showstop=1&amp;showvolume=1&amp;showloading=always&amp;buttonwidth=30&amp;volumewidth=40&amp;volumeheight=15" />
                 </object>
             </span>
-            <div id="uploadedBy" >
+            <div class="uploadedBy" >
                 <p class="uploaded">Uploaded by: {{ song.uploader.username }}</p>
+            </div>
+            <div class="uploadedBy" >
+                <p class="uploaded">Category: {{ song.category }}</p>
             </div>
             <div class="footer">
 
                 {% if app.getUser() %}
 
                 <div>
-                    <a class="glyphicon glyphicon-download" href="{{ asset('uploads/songs/') }}{{ song.file }}" download>download</a>
+                    <a class="glyphicon glyphicon-download" title="Download" href="{{ asset('uploads/songs/') }}{{ song.file }}" download></a>
                 </div>
                 {% endif %}
 
-
                 {% if app.getUser() and (app.getUser().isAuthor(song) or app.getUser().isAdmin()) %}
                     <div>
-                        <a href="{{ path('song_delete', {'id': song.id}) }}" class="glyphicon glyphicon-trash">remove</a>
+                        <a href="{{ path('song_delete', {'id': song.id}) }}" class="glyphicon glyphicon-trash" title="Remove"></a>
                     </div>
                 {% endif %}
-
-
 
             </div>
         </div>

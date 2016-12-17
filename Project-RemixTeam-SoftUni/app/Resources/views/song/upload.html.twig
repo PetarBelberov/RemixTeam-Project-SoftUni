@@ -25,12 +25,8 @@
             {{ form_row(form.songAuthor, { 'attr': {
                 'placeholder': 'Song author' }})  }}
             <br/>
-            <div class="form-group">
-                <label class="col-sm-4 control-label" for="article_category">Category</label>
-                <div class="col-sm-6">
-                    {{ form_widget(form.category) }}
-                </div>
-            </div>
+            {{ form_row(form.category,  { 'attr': {
+                'placeholder': 'Song category' }})  }}
             <br/>
 
             <button type="submit">Upload song</button>

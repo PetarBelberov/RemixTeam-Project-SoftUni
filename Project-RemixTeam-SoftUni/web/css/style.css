@@ -7,7 +7,11 @@
     -webkit-box-sizing: border-box;
     box-sizing: border-box;
 }
-
+body{
+    height: 100%;
+    margin: 0;
+    padding: 0;
+}
 .navbar {
     margin-bottom: 0;
     border-radius: 0;
@@ -27,6 +31,7 @@
     background-repeat: repeat-x;
     background-position: center;      /* center the image */
     background-size: cover;
+
 }
 
 img{
@@ -311,6 +316,7 @@ a.upload{
     margin-top: -100px;
     padding: 0px;
     width: 70%;
+    min-height: 300px;
 }
 .well{
     background-color: #a6c7a7;
@@ -318,7 +324,7 @@ a.upload{
 #deleteEmail, #deleteName{
     width: 33.33333333%;
 }
-#deleteAdminForm{
+#deleteAdminForm, #editAdminForm{
     background-color: #1b1111;
     width:80%;
     margin: 0 auto;
@@ -326,7 +332,7 @@ a.upload{
 .form-horizontal fieldset legend {
     color: white;
 }
-#deleteForm{
+#deleteForm, #editForm{
     width: 80%;
     margin: 0 auto;
 }
@@ -351,7 +357,7 @@ a.upload{
     font-size: 25px;
     margin-top: -83px;
 }
-#uploadedBy{
+.uploadedBy{
     text-align: right;
     font-size: 20px;
     margin-right: 10px;
@@ -422,11 +428,28 @@ object{
     border-top-right-radius: 6px;
     border-bottom-right-radius: 6px;
     border-bottom-left-radius: 6px;
-    height: 517px;
+    height: 557px;
 }
 #deleteUsername{
     color: black;
 }
 .glyphicon-trash{
     margin-right: 25px;
+}
+#labelName{
+    padding-bottom: 8px;
+}
+#deleteUsers{
+    margin-top: -153px;
+}
+
+#deleteCategories, #editCategories{
+    height: 340px;
+    margin-top: -119px;
+}
+.footer{
+    display: inline;
+}
+.footer div{
+    display: inline;
 }

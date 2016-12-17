@@ -10,19 +10,16 @@
                     <fieldset>
                         <legend>Delete Song</legend>
                         <div class="form-group">
-                            <label class="col-sm-4 control-label" for="user_email">Song Name</label>
-                            <input class="form-control" id="user_email" value="{{ song.songName }}" name="user_edit[email]" required type="email" disabled>
+                            <label class="col-sm-4 control-label" for="song_name" id="labelName">Song Name</label>
+                            <input class="form-control" id="song_name" value="{{ song.songName }}" required  disabled>
 
                         </div>
                         <div class="form-group">
-                            <label class="col-sm-4 control-label" for="user_fullName">Song Author</label>
-                            <input type="text" class="form-control" id="user_fullName" value="{{ song.songAuthor }}" name="user_edit[fullName]" disabled>
+                            <label class="col-sm-4 control-label" for="user_author">Song Author</label>
+                            <input type="text" class="form-control" id="user_author" value="{{ song.songAuthor }}"  disabled>
                         </div>
                         <div class="form-group">
-                            <label class="col-sm-4 control-label" for="article_category">Category</label>
-                            <div class="col-sm-6">
-                                {{ form_widget(form.category, { 'attr':{'readonly':'readonly'}}) }}
-                            </div>
+                            <label class="col-sm-4 control-label" id="labelName2">Category - {{ song.category }}</label>
                         </div>
 
                         {{ form_row(form._token) }}

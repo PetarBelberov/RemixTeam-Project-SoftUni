@@ -19,9 +19,9 @@ class SoundType extends AbstractType
             ->add('coverFile', FileType::class, array('data_class' => null, 'required' => false))
             ->add('songName', TextType::class)
             ->add('songAuthor', TextType::class)
-            ->add('category', EntityType::class,[
+            ->add('category', EntityType::class,  [
                  'class' => Category::class
-            ]);
+            ] );
     }
 
     public function configureOptions(OptionsResolver $resolver)
