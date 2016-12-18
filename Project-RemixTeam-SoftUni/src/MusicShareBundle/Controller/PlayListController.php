@@ -35,7 +35,7 @@ class PlayListController extends Controller
             $entityManager->persist($playList);
             $entityManager->flush();
 
-            return $this->redirectToRoute('user_profile');
+            return $this->redirectToRoute('print_all_songs');
         }
 
         return $this->render('playlist/create.html.twig', [
@@ -45,7 +45,7 @@ class PlayListController extends Controller
 
     /**
      * @Security("is_granted('IS_AUTHENTICATED_FULLY')")
-     * @Route("/playlist/delete/{id}", name="create_playlist")
+     * @Route("/playlist/delete/{id}", name="delete_playlist")
      * @return \Symfony\Component\HttpFoundation\Response
      */
     public function deletePlayList($id) {
@@ -53,7 +53,7 @@ class PlayListController extends Controller
 
         if ($playList == null) {
             return $this->render('error.html.twig', [
-                'error' => ' 404: Play list not found.'
+                'error' => ' 404: Playlist not found.'
             ]);
         }
 
@@ -84,9 +84,10 @@ class PlayListController extends Controller
     }
 
     /**
-     * @param $id
+     *
      * @Security("is_granted('IS_AUTHENTICATED_FULLY')")
      * @Route("/playlists/{id}", name="view_playlists")
+     *
      * @return \Symfony\Component\HttpFoundation\Response
      */
     public function viewPlayLists($id) {
@@ -106,7 +107,6 @@ class PlayListController extends Controller
         ]);
     }
     /**
-     * @param $id
      * @Security("is_granted('IS_AUTHENTICATED_FULLY')")
      * @Route("/playlist/{id}", name="view_playlist")
      * @return \Symfony\Component\HttpFoundation\Response
@@ -116,7 +116,7 @@ class PlayListController extends Controller
 
         if ($playList === null) {
             return $this->render('error.html.twig', [
-                'error' => ' 404: Play list not found.'
+                'error' => ' 404: Playlist not found.'
             ]);
         }
 
@@ -129,18 +129,23 @@ class PlayListController extends Controller
     }
 
     /**
+     * @param $songId
+     *  @param $listId
      * @Security("is_granted('IS_AUTHENTICATED_FULLY')")
      * @Route("/playlist/addsong/{songId}/{listId}", name="add_song_to_playlist")
      * @return \Symfony\Component\HttpFoundation\Response
      */
     public function addSongToPlayList($songId, $listId) {
+
         $playList = $this->getDoctrine()->getRepository(PlayList::class)->find($listId);
         $song = $this->getDoctrine()->getRepository(Sound::class)->find($songId);
 
+
         if ($playList == null || $song == null) {
             return $this->render('error.html.twig', [
-                'error' => ' 404: Play list or song not found.'
+                'error' => ' 404: Playlist or song not found.'
             ]);
+
         }
 
         $user = $this->getUser();
@@ -181,7 +186,7 @@ class PlayListController extends Controller
 
         if ($playList == null || $song == null) {
             return $this->render('error.html.twig', [
-                'error' => ' 404: Play list or song not found.'
+                'error' => ' 404: Playlist or song not found.'
             ]);
         }
 

@@ -27,7 +27,6 @@
             <div class="footer">
 
                 {% if app.getUser() %}
-
                 <div>
                     <a class="glyphicon glyphicon-download" title="Download" href="{{ asset('uploads/songs/') }}{{ song.file }}" download></a>
                 </div>
@@ -39,6 +38,13 @@
                     </div>
                 {% endif %}
 
+                {% if app.getUser() and (app.getUser() or app.getUser().isAdmin()) %}
+                    <div>
+                        <a href="{{ path('add_song_to_playlist', {'songId': song.id, 'listId': app.user.id}) }}" onclick="return confirm('Are you sure that you want to add this song in your favorites?')" class="glyphicon glyphicon-list-alt" title="Add to playlist"></a>
+                    </div>
+                {% endif %}
+
             </div>
         </div>
+
 {% endblock %}

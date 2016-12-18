@@ -93,8 +93,8 @@ class UserController extends Controller
 
     /**
      * @Security("is_granted('IS_AUTHENTICATED_FULLY')")
+      * @param $id
      * @Route("/view_profile/{id}/uploads", name="view_user_uploads")
-     * @param $id
      * @return \Symfony\Component\HttpFoundation\Response
      */
     public function viewUserUploads($id)

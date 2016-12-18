@@ -17,7 +17,9 @@ class PlayListType extends AbstractType
 
     public function configureOptions(OptionsResolver $resolver)
     {
-
+        $resolver->setDefaults(array(
+            'data_class' => 'MusicShareBundle\Entity\PlayList',
+        ));
     }
 
     public function getName()

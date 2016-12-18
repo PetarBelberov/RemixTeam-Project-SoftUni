@@ -82,6 +82,7 @@ class SoundController extends Controller
     public function viewSong($id)
     {
         $song = $this->getDoctrine()->getRepository(Sound::class)->find($id);
+        $playLists = $this->getUser()->getPlayLists()->toArray();
 
         if ($song === null)
         {
@@ -89,7 +90,9 @@ class SoundController extends Controller
         }
 
         return $this->render('song/view.html.twig', [
-            'song' => $song
+            'song' => $song,
+            'playLists' => $playLists
+
         ]);
     }
 
@@ -181,7 +184,7 @@ class SoundController extends Controller
             ));
     }
 
-    //categories
+
     /**
      * @Route("/category/{id}", name="category_songs")
      * @param $id
@@ -199,4 +202,6 @@ class SoundController extends Controller
         return $this->render('song/list.html.twig',
             ['songs'=>$songs]);
     }
+
+
 }

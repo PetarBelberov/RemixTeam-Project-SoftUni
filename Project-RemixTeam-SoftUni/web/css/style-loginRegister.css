@@ -126,16 +126,36 @@ span.psw {
         width: 100%;
     }
 }
+#id04{
+    margin-top: -100px;
+    padding-bottom: 35px;
+}
+#id04 .modal-content{
+    height: 475px
+}
+
+#id04 .modal-content .imgcontainer{
+    height: 65px;
+}
+#id04 .modal-content .container{
+    margin: 0 auto;
+    width: 80%;
+}
+#id04 .modal-content .container button{
+    margin: 0px;
+}
+#id04 .modal-content .container div input{
+    color: #777;
+}
+
 #id03{
     margin-top: -100px;
     padding-bottom: 35px;
 }
-#id01, #id02, #id03{
+#id01, #id02, #id03, #id04{
     z-index: 2;
 }
-#id02 .modal-content{
-    height: 540px
-}
+
 #id03 .modal-content{
     height: 475px
 }
@@ -145,7 +165,6 @@ span.psw {
 #id03 .modal-content .container{
     margin: 0 auto;
     width: 80%;
-
 }
 #id03 .modal-content .container button{
     margin: 0px;
@@ -159,6 +178,9 @@ span.psw {
     color: #777;
 }
 
+#id02 .modal-content{
+    height: 540px
+}
 #id02 .modal-content .container input{
     height: 34px;
     width: 100%;

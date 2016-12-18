@@ -108,6 +108,8 @@ class User implements UserInterface
         return $this->playLists;
     }
 
+
+
     /**
      * @param \MusicShareBundle\Entity\PlayList $playList
      *

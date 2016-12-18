@@ -3,6 +3,7 @@
 namespace MusicShareBundle\Controller\Admin;
 
 use MusicShareBundle\Entity\Category;
+use MusicShareBundle\Entity\Sound;
 use MusicShareBundle\Form\CategoryType;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
@@ -119,4 +120,16 @@ class CategoryController extends Controller
             ['category' => $category, 'form' => $form->createView()]);
     }
 
+    /**
+     * @Route("/category/{name}", name="songs_by_category")
+     * @param $name
+     *
+     * @return \Symfony\Component\HttpFoundation\Response
+     */
+    public function songs($name)
+    {
+        $category = $this->getDoctrine()->getRepository(Category::class)->findOneBy(['name' => $name]);
+
+        return $this->render('search/song.html.twig', ['category' => $category]);
+    }
 }

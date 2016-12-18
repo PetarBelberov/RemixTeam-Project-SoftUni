@@ -430,12 +430,13 @@ object{
     border-bottom-left-radius: 6px;
     height: 557px;
 }
+#id04 .uploadForm{
+    height: 324px;
+}
 #deleteUsername{
     color: black;
 }
-.glyphicon-trash{
-    margin-right: 25px;
-}
+
 #labelName{
     padding-bottom: 8px;
 }
@@ -452,4 +453,5 @@ object{
 }
 .footer div{
     display: inline;
+    width: 33%;
 }
