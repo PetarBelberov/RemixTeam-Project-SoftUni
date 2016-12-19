@@ -20,6 +20,7 @@ class PlayListController extends Controller
      */
     public function createPlayList(Request $request)
     {
+
         $playList = new PlayList();
         $form = $this->createForm(PlayListType::class, $playList);
 
@@ -41,6 +42,7 @@ class PlayListController extends Controller
         return $this->render('playlist/create.html.twig', [
             'form' => $form->createView()
         ]);
+
     }
 
     /**
@@ -84,30 +86,6 @@ class PlayListController extends Controller
     }
 
     /**
-     *
-     * @Security("is_granted('IS_AUTHENTICATED_FULLY')")
-     * @Route("/playlists/{id}", name="view_playlists")
-     *
-     * @return \Symfony\Component\HttpFoundation\Response
-     */
-    public function viewPlayLists($id) {
-        $user = $this->getDoctrine()->getRepository(User::class)->find($id);
-
-        if ($user == null) {
-            return $this->render('error.html.twig', [
-                'error' => ' 404: User not found.'
-            ]);
-        }
-
-        $playLists = $user->getPlayLists()->toArray();
-
-        return $this->render('playlist/view_lists.html.twig', [
-            'user' => $user,
-            'playlists' => $playLists
-        ]);
-    }
-    /**
-     * @Security("is_granted('IS_AUTHENTICATED_FULLY')")
      * @Route("/playlist/{id}", name="view_playlist")
      * @return \Symfony\Component\HttpFoundation\Response
      */

@@ -2,8 +2,10 @@
 
 namespace MusicShareBundle\Controller;
 
+use MusicShareBundle\Entity\PlayList;
 use MusicShareBundle\Entity\Role;
 use MusicShareBundle\Entity\User;
+use MusicShareBundle\Form\PlayListType;
 use MusicShareBundle\Form\SoundType;
 use MusicShareBundle\Form\UserType;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
@@ -49,6 +51,7 @@ class UserController extends Controller
             // ... do any other work - like sending them an email, etc
             // maybe set a "flash" success message for the user
 
+
             return $this->redirectToRoute('security_login');
         }
         return $this->render(
@@ -92,7 +95,6 @@ class UserController extends Controller
     }
 
     /**
-     * @Security("is_granted('IS_AUTHENTICATED_FULLY')")
       * @param $id
      * @Route("/view_profile/{id}/uploads", name="view_user_uploads")
      * @return \Symfony\Component\HttpFoundation\Response
@@ -101,10 +103,13 @@ class UserController extends Controller
     {
         $user = $this->getDoctrine()->getRepository(User::class)->find($id);
         $songs = $user->getSongs()->toArray();
+        $playList = $this->getDoctrine()->getRepository(PlayList::class)->find($id);
 
         return $this->render('user/list_uploads.html.twig', [
             'songs' => $songs,
-            'user' => $user
+            'user' => $user,
+             'playList' => $playList
+
         ]);
     }
 }

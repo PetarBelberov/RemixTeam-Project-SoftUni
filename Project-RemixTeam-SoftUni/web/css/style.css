@@ -312,6 +312,7 @@ a.upload{
     text-align: center;
     font-size: 15px;
 }
+
 #listUsers{
     margin-top: -100px;
     padding: 0px;
@@ -378,19 +379,45 @@ a.upload{
 #listSongs {
     background-color: rgba(94, 99, 15, 0.38);
 }
+#playlistHead tr th:nth-child(5){
+    text-align: center;
+}
+#playlistSongs{
+    background-color: rgba(67, 206, 162, 0.81);
+}
+#playlistSongs td{
+    vertical-align: middle;
+    text-align: center;
+}
 
+#playlistSongs td a{
+    color: black;
+}
 #wellAdmin{
     padding-top: 0;
     background-color: rgba(0, 136, 204, 0.28);
 }
 #wellCatalog{
     padding-top: 0;
-    background-color: rgba(94, 99, 15, 0.67);
+    background-color: rgba(19, 119, 87, 0.81);
+    border-bottom-left-radius: 25px;
+    border-bottom-right-radius: 25px;
+    border-top-left-radius: 25px;
+    border-top-right-radius: 25px;
+}
+#wellPlaylist{
+    padding-top: 0;
+    background-color: rgba(67, 206, 162, 0.58);
+    border-bottom-left-radius: 25px;
+    border-bottom-right-radius: 25px;
+    border-top-left-radius: 25px;
+    border-top-right-radius: 25px;
 }
 
 .listTitle{
     text-align: center;
     padding-bottom: 12px;
+    border-bottom: 1px solid #dddddd;
 }
 tbody{
     color: black;
@@ -399,8 +426,14 @@ object{
     width: 400px;
     height: 30px;
 }
+#listSongs{
+    background-color: rgba(67, 206, 162, 0.58)
+}
 #listSongs td{
     border-top: none;
+}
+#listSongs td a{
+    color: black;
 }
 #uploaderTd, #uploaderLabel{
     border-top: none;
@@ -454,4 +487,10 @@ object{
 .footer div{
     display: inline;
     width: 33%;
+}
+#playlistObject{
+    width: 200px;
+    height: 18px;
+
+    vertical-align: middle;
 }

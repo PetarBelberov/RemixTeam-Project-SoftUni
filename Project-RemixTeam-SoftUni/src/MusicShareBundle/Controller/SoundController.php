@@ -3,7 +3,9 @@
 namespace MusicShareBundle\Controller;
 
 use MusicShareBundle\Entity\Category;
+use MusicShareBundle\Entity\PlayList;
 use MusicShareBundle\Entity\Sound;
+use MusicShareBundle\Entity\User;
 use MusicShareBundle\Form\SoundType;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
@@ -82,7 +84,7 @@ class SoundController extends Controller
     public function viewSong($id)
     {
         $song = $this->getDoctrine()->getRepository(Sound::class)->find($id);
-        $playLists = $this->getUser()->getPlayLists()->toArray();
+        $playLists = $this->getDoctrine()->getRepository(PlayList::class)->findAll();
 
         if ($song === null)
         {
@@ -92,7 +94,6 @@ class SoundController extends Controller
         return $this->render('song/view.html.twig', [
             'song' => $song,
             'playLists' => $playLists
-
         ]);
     }
 
@@ -120,7 +121,7 @@ class SoundController extends Controller
      * @param $id
      * @return \Symfony\Component\HttpFoundation\Response
      */
-    public function printAllSongs()
+    public function printAllSongs($id)
     {
         $categories = $this->getDoctrine()->getRepository(Category::class)->findAll();
         $songs = $this->getDoctrine()->getRepository(Sound::class)->findAll();
@@ -132,7 +133,7 @@ class SoundController extends Controller
 
         }
         return $this->render('song/view_all.html.twig', [
-            'songs' => $songs
+            'songs' => $songs,
         ]);
     }
 

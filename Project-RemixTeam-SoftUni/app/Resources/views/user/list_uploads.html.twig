@@ -7,6 +7,9 @@
 {% block main %}
     <div class="container body-content">
         <div style="text-align: center; font-size: 40px">{{ user.username }}'s uploads</div>
+        <div style="text-align: center; font-size: 25px">
+            <a href="{{ path('view_playlist', {'id': playList.id}) }}">See {{ user.username }}'s playlist</a>
+        </div>
         <br/>
         <div class="row">
             {% for song in songs %}

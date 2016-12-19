@@ -1,6 +1,39 @@
+
+
 {% extends 'base.html.twig' %}
 
 {% block main %}
 
-{% endblock %}
+    <div class="container body-content" id="listUsers">
+        <div class="well" id="wellCatalog">
+            <h2 class="listTitle">Playlists</h2>
+            <div class="row">
+                <table class="table table-striped table-hover ">
+                    <thead>
+                    {% for use in user %}
+                        <tr>
+                            <th>{{ use.username }}</th>
+                        </tr>
+                    {% endfor %}
 
+                    </thead>
+                    <tbody>
+
+
+                    {% for playList in playLists %}
+                        <tr>
+                        <tr id="catalogRows">
+                        <tr >
+                            <td>{{ playList.name }}</td>
+                        </tr>
+
+                    {% endfor %}
+
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+
+{% endblock %}

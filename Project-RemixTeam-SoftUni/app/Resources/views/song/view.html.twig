@@ -19,7 +19,7 @@
                 </object>
             </span>
             <div class="uploadedBy" >
-                <p class="uploaded">Uploaded by: {{ song.uploader.username }}</p>
+                <p class="uploaded">Uploaded by: <a href="{{ path('view_user_uploads', {'id': song.uploader.id}) }}">{{ song.uploader.username }}</a></p>
             </div>
             <div class="uploadedBy" >
                 <p class="uploaded">Category: {{ song.category }}</p>
