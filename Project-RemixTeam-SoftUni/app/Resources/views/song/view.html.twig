@@ -24,6 +24,34 @@
             <div class="uploadedBy" >
                 <p class="uploaded">Category: {{ song.category }}</p>
             </div>
+
+        <script>
+            $(document).ready(function(){
+                $("like").click(function(){
+                    $.get("/song/like/{{song.id}}", function(data, status){
+                        $('#ratioP').text("Likes " + data[0].like +" /Dislikes " + data[0].dislike )
+                    });
+                });
+            });
+            $(document).ready(function(){
+                $("dislike").click(function(){
+                    $.get("/song/dislike/{{song.id}}", function(data, status){
+
+                        $('#ratioP').text("Likes " + data[0].like +" /Dislikes " + data[0].dislike );
+                    });
+                });
+            });
+        </script>
+
+        <div>
+            <like><img id="liked_img" src="/pictures/like.png" alt="Like" style="width:42px;height:42px;border:0;"></like>
+            <dislike><img id="disliked_img" src="/pictures/dislike.png" alt="Dislike" style="width:42px;height:42px;border:0;"></dislike>
+            </a>
+        </div>
+        <div>
+            <p id="ratioP">Likes {{ ratio.like }} /Dislikes {{ ratio.dislike }} </p>
+        </div>
+
             <div class="footer">
 
                 {% if app.getUser() %}

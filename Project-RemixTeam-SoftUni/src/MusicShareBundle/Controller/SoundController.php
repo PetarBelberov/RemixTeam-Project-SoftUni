@@ -2,8 +2,10 @@
 
 namespace MusicShareBundle\Controller;
 
+use Doctrine\Common\Collections\Criteria;
 use MusicShareBundle\Entity\Category;
 use MusicShareBundle\Entity\PlayList;
+use MusicShareBundle\Entity\Rating;
 use MusicShareBundle\Entity\Sound;
 use MusicShareBundle\Entity\User;
 use MusicShareBundle\Form\SoundType;
@@ -15,6 +17,7 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\ResponseHeaderBag;
 use Symfony\Component\Routing\Annotation\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
+use Symfony\Component\HttpFoundation\JsonResponse;
 
 class SoundController extends Controller
 {
@@ -83,6 +86,9 @@ class SoundController extends Controller
      */
     public function viewSong($id)
     {
+
+        $ratio['like'] =$this->getDoctrine()->getRepository(Rating::class)->getLikedRating($id);
+        $ratio['dislike'] = $this->getDoctrine()->getRepository(Rating::class)->getDisLikedRating($id);
         $song = $this->getDoctrine()->getRepository(Sound::class)->find($id);
         $playLists = $this->getDoctrine()->getRepository(PlayList::class)->findAll();
 
@@ -93,6 +99,7 @@ class SoundController extends Controller
 
         return $this->render('song/view.html.twig', [
             'song' => $song,
+            'ratio' => $ratio,
             'playLists' => $playLists
         ]);
     }
@@ -202,6 +209,60 @@ class SoundController extends Controller
         $songs = $category->getSongs()->toArray();
         return $this->render('song/list.html.twig',
             ['songs'=>$songs]);
+    }
+
+
+    private function rateSong($soundId, $liked){
+        $user = $this->getUser();
+        $usrId = $user->getId();
+        $em = $this->getDoctrine()->getManager();
+        $criteria = new \Doctrine\Common\Collections\Criteria();
+        $criteria
+            ->andWhere($criteria->expr()->contains('soundId', $soundId ) )
+            ->andWhere($criteria->expr()->contains('userId', $usrId ) );
+        $rating = $em->getRepository(Rating::class)->matching($criteria);
+
+
+        if (count( $rating) < 1   ){
+            $rating = new Rating();
+            $rating->setSoundId($soundId);
+            $rating->setUserId($usrId);
+            $rating->setLiked($liked);
+            $em->persist($rating);
+            $em->flush();
+        }else{
+            $rating = $rating[0];
+            $rating->setLiked($liked);
+            $em->merge($rating);
+            $em->flush();
+        }
+    }
+
+    /**
+     * @Route("/song/dislike/{id}", name="dislike_songs")
+     * @param $id
+     *
+     * @return \Symfony\Component\HttpFoundation\Response
+     */
+    public function dislikeSong($id){
+        $this->rateSong($id,-1);
+        $ratio['like'] =$this->getDoctrine()->getRepository(Rating::class)->getLikedRating($id);
+        $ratio['dislike'] = $this->getDoctrine()->getRepository(Rating::class)->getDisLikedRating($id);
+        return new JsonResponse(array($ratio));
+    }
+
+
+    /**
+     * @Route("/song/like/{id}", name="like_songs")
+     * @param $id
+     *
+     * @return \Symfony\Component\HttpFoundation\Response
+     */
+    public function likeSong($id){
+        $this->rateSong($id,1);
+        $ratio['like'] =$this->getDoctrine()->getRepository(Rating::class)->getLikedRating($id);
+        $ratio['dislike'] = $this->getDoctrine()->getRepository(Rating::class)->getDisLikedRating($id);
+        return new JsonResponse(array($ratio));
     }
 
 
