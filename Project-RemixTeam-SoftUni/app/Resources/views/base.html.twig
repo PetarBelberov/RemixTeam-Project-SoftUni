@@ -42,7 +42,7 @@
 
                         {% if app.getUser()  %}
                             <li><a href="#" class="userNavbar"><span class="glyphicon glyphicon-user"></span> Welcome {{ app.user.username }}</a></li>
-                            <li><a href="{{ path('view_playlist', {'id': app.user.id}) }}"><span class="glyphicon glyphicon-music"></span> Playlist</a></li>
+                            <li><a href="{{ path('view_user_favorites', {'id': app.user.id}) }}"><span class="glyphicon glyphicon-music"></span> Favorites</a></li>
                             <li id="logout"><a href="{{ path('security_logout') }}"><span class="glyphicon glyphicon-log-out"></span> Log Out</a></li>
                         {% endif %}
 

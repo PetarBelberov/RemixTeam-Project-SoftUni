@@ -3,7 +3,6 @@
 namespace MusicShareBundle\Controller;
 use Doctrine\Common\Collections\Criteria;
 use MusicShareBundle\Entity\Category;
-use MusicShareBundle\Entity\PlayList;
 use MusicShareBundle\Entity\Rating;
 use MusicShareBundle\Entity\Sound;
 use MusicShareBundle\Form\SoundType;
@@ -85,7 +84,6 @@ class SoundController extends Controller
         $ratio['like'] =$this->getDoctrine()->getRepository(Rating::class)->getLikedRating($id);
         $ratio['dislike'] = $this->getDoctrine()->getRepository(Rating::class)->getDisLikedRating($id);
         $song = $this->getDoctrine()->getRepository(Sound::class)->find($id);
-        $playLists = $this->getDoctrine()->getRepository(PlayList::class)->findAll();
 
         if ($song === null)
         {
@@ -94,8 +92,7 @@ class SoundController extends Controller
 
         return $this->render('song/view.html.twig', [
             'song' => $song,
-            'ratio' => $ratio,
-            'playLists' => $playLists
+            'ratio' => $ratio
         ]);
     }
 

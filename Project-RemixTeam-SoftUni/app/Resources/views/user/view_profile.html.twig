@@ -19,6 +19,7 @@
             Email: {{ user.email }}
             <br/>
             <a href="{{ path('view_user_uploads', {'id': user.id}) }}">View user songs</a>
+            <a href="{{ path('view_user_favorites', {'id': user.id}) }}">View user favorite songs</a>
         </span>
     </div>
 {% endblock %}

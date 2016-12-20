@@ -49,10 +49,8 @@
                 </div>
             {% endif %}
 
-            {% if app.getUser() and (app.getUser() or app.getUser().isAdmin()) %}
-                <div>
-                    <a href="{{ path('add_song_to_playlist', {'songId': song.id, 'listId': app.user.id}) }}" onclick="return confirm('Are you sure that you want to add this song in your favorites?')" class="glyphicon glyphicon-list-alt" title="Add to playlist"></a>
-                </div>
+            {% if app.getUser() %}
+                <a href="{{ path('add_to_favorites', {'songId': song.id}) }}" class="glyphicon glyphicon-heart"></a>
             {% endif %}
         </div>
     </div>

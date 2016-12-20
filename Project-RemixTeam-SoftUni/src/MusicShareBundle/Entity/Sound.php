@@ -68,12 +68,12 @@ class Sound
     /**
      * @var ArrayCollection
      *
-     * @ORM\ManyToMany(targetEntity="MusicShareBundle\Entity\PlayList")
-     * @ORM\JoinTable(name="playlist_songs",
+     * @ORM\ManyToMany(targetEntity="MusicShareBundle\Entity\User")
+     * @ORM\JoinTable(name="favorites_songs",
      *     joinColumns={@ORM\JoinColumn(name="song_id", referencedColumnName="id")},
-     *     inverseJoinColumns={@ORM\JoinColumn(name="playListID", referencedColumnName="id")})
+     *     inverseJoinColumns={@ORM\JoinColumn(name="user_id", referencedColumnName="id")})
      */
-    private $playLists;
+    private $favorites;
 
     /**
      * Get id
@@ -181,21 +181,21 @@ class Sound
         return $this->uploader;
     }
 
-    public function getPlayLists()
+    public function getFavorites()
     {
-        return $this->playLists;
+        return $this->favorites;
     }
 
-    public function addToPlayList($playList)
+    public function addToFavorites($user)
     {
-        $this->playLists[] = $playList;
+        $this->favorites[] = $user;
 
         return $this;
     }
 
-    public function setPlayLists($playLists)
+    public function setFavorites($users)
     {
-        $this->playLists = $playLists;
+        $this->favorites = $users;
 
         return $this;
     }

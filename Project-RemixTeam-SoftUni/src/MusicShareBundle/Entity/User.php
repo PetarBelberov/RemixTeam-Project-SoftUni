@@ -64,9 +64,9 @@ class User implements UserInterface
     /**
      * @var ArrayCollection
      *
-     * @ORM\OneToMany(targetEntity="MusicShareBundle\Entity\PlayList", mappedBy="owner")
+     * @ORM\ManyToMany(targetEntity="MusicShareBundle\Entity\Sound", mappedBy="favorites")
      */
-    private $playLists;
+    private $favoriteSongs;
 
     /**
      * @var ArrayCollection
@@ -99,25 +99,33 @@ class User implements UserInterface
         return $this;
     }
 
-
     /**
-     * @return \Doctrine\Common\Collections\Collection
+     * @return ArrayCollection
      */
-    public function getPlayLists()
+    public function getFavoriteSongs()
     {
-        return $this->playLists;
+        return $this->favoriteSongs;
     }
 
-
-
     /**
-     * @param \MusicShareBundle\Entity\PlayList $playList
+     * @param \MusicShareBundle\Entity\Sound $song
      *
      * @return User
      */
-    public function addPlayList(PlayList $playList)
+    public function addSongToFavorites(Sound $song)
     {
-        $this->playLists[] = $playList;
+        $this->favoriteSongs[] = $song;
+
+        return $this;
+    }
+
+    /**
+     * @param $songs
+     * @return $this
+     */
+    public function setFavoriteSongs($songs)
+    {
+        $this->favoriteSongs = $songs;
 
         return $this;
     }
