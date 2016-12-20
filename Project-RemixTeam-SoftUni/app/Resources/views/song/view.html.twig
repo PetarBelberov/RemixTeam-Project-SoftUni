@@ -4,75 +4,75 @@
 
 {% block main %}
 
-        <div id="songContent">
-            <img src="{{ cover_directory~'/'~song.coverFile }}" id="coverFile"/>
+    <div id="songContent">
+        <img src="{{ cover_directory~'/'~song.coverFile }}" id="coverFile"/>
+        <br/>
+        <span style="text-align: left; margin-left: 25px">
             <br/>
-            <span style="text-align: left; margin-left: 25px">
-                <br/>
-                {{ song.songAuthor }} - {{ song.songName }}
-                <br/>
+            {{ song.songAuthor }} - {{ song.songName }}
+            <br/>
 
-                <object type="application/x-shockwave-flash" data="http://flash-mp3-player.net/medias/player_mp3_maxi.swf" >
-                    <param name="movie" value="http://flash-mp3-player.net/medias/player_mp3_maxi.swf" />
-                    <param name="bgcolor" value="#ffffff" />
-                    <param name="FlashVars" id="" value="mp3={{ song_directory~'/'~song.file }}&amp;width=400&amp;height=30&amp;showstop=1&amp;showvolume=1&amp;showloading=always&amp;buttonwidth=30&amp;volumewidth=40&amp;volumeheight=15" />
-                </object>
-            </span>
-            <div class="uploadedBy" >
-                <p class="uploaded">Uploaded by: <a href="{{ path('view_user_uploads', {'id': song.uploader.id}) }}">{{ song.uploader.username }}</a></p>
-            </div>
-            <div class="uploadedBy" >
-                <p class="uploaded">Category: {{ song.category }}</p>
-            </div>
+            <object type="application/x-shockwave-flash" data="http://flash-mp3-player.net/medias/player_mp3_maxi.swf" >
+                <param name="movie" value="http://flash-mp3-player.net/medias/player_mp3_maxi.swf" />
+                <param name="bgcolor" value="#ffffff" />
+                <param name="FlashVars" id="" value="mp3={{ song_directory~'/'~song.file }}&amp;width=400&amp;height=30&amp;showstop=1&amp;showvolume=1&amp;showloading=always&amp;buttonwidth=30&amp;volumewidth=40&amp;volumeheight=15" />
+            </object>
+        </span>
 
-        <script>
-            $(document).ready(function(){
-                $("like").click(function(){
-                    $.get("/song/like/{{song.id}}", function(data, status){
-                        $('#ratioP').text("Likes " + data[0].like +" /Dislikes " + data[0].dislike )
-                    });
-                });
-            });
-            $(document).ready(function(){
-                $("dislike").click(function(){
-                    $.get("/song/dislike/{{song.id}}", function(data, status){
-
-                        $('#ratioP').text("Likes " + data[0].like +" /Dislikes " + data[0].dislike );
-                    });
-                });
-            });
-        </script>
-
-        <div>
-            <like><img id="liked_img" src="/pictures/like.png" alt="Like" style="width:42px;height:42px;border:0;"></like>
-            <dislike><img id="disliked_img" src="/pictures/dislike.png" alt="Dislike" style="width:42px;height:42px;border:0;"></dislike>
-            </a>
+        {% if app.getUser() %}
+        <div class="likeAndDislike">
+            <div id="like"><img id="liked_img" src="/pictures/like.png" alt="Like" style="width:42px;height:42px;border:0;"></div>
+            <div id="dislike"><img id="disliked_img" src="/pictures/dislike.png" alt="Dislike" style="width:42px;height:42px;border:0;"></div>
         </div>
         <div>
             <p id="ratioP">Likes {{ ratio.like }} /Dislikes {{ ratio.dislike }} </p>
         </div>
+        {% endif %}
 
-            <div class="footer">
-
-                {% if app.getUser() %}
-                <div>
-                    <a class="glyphicon glyphicon-download" title="Download" href="{{ asset('uploads/songs/') }}{{ song.file }}" download></a>
-                </div>
-                {% endif %}
-
-                {% if app.getUser() and (app.getUser().isAuthor(song) or app.getUser().isAdmin()) %}
-                    <div>
-                        <a href="{{ path('song_delete', {'id': song.id}) }}" class="glyphicon glyphicon-trash" title="Remove"></a>
-                    </div>
-                {% endif %}
-
-                {% if app.getUser() and (app.getUser() or app.getUser().isAdmin()) %}
-                    <div>
-                        <a href="{{ path('add_song_to_playlist', {'songId': song.id, 'listId': app.user.id}) }}" onclick="return confirm('Are you sure that you want to add this song in your favorites?')" class="glyphicon glyphicon-list-alt" title="Add to playlist"></a>
-                    </div>
-                {% endif %}
-
-            </div>
+        <div class="uploadedBy" >
+            <p class="uploaded">Uploaded by: <a href="{{ path('view_user_uploads', {'id': song.uploader.id}) }}">{{ song.uploader.username }}</a></p>
+        </div>
+        <div class="uploadedBy" >
+            <p class="uploaded">Category: {{ song.category }}</p>
         </div>
 
+        <div class="footer">
+            {% if app.getUser() %}
+            <div>
+                <a class="glyphicon glyphicon-download" title="Download" href="{{ asset('uploads/songs/') }}{{ song.file }}" download></a>
+            </div>
+            {% endif %}
+
+            {% if app.getUser() and (app.getUser().isAuthor(song) or app.getUser().isAdmin()) %}
+                <div>
+                    <a href="{{ path('song_delete', {'id': song.id}) }}" class="glyphicon glyphicon-trash" title="Remove"></a>
+                </div>
+            {% endif %}
+
+            {% if app.getUser() and (app.getUser() or app.getUser().isAdmin()) %}
+                <div>
+                    <a href="{{ path('add_song_to_playlist', {'songId': song.id, 'listId': app.user.id}) }}" onclick="return confirm('Are you sure that you want to add this song in your favorites?')" class="glyphicon glyphicon-list-alt" title="Add to playlist"></a>
+                </div>
+            {% endif %}
+        </div>
+    </div>
+    {% block javascripts %}
+    <script>
+        $(document).ready(function(){
+            $("#like").click(function(){
+                $.get("/song/like/{{song.id}}", function(data, status){
+                    $('#ratioP').text("Likes " + data[0].like +" /Dislikes " + data[0].dislike )
+                });
+            });
+        });
+        $(document).ready(function(){
+            $("#dislike").click(function(){
+                $.get("/song/dislike/{{song.id}}", function(data, status){
+
+                    $('#ratioP').text("Likes " + data[0].like +" /Dislikes " + data[0].dislike );
+                });
+            });
+        });
+    </script>
+    {% endblock %}
 {% endblock %}

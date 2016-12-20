@@ -5,83 +5,78 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     {% block stylesheets %}
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-    <link rel="stylesheet" href="{{ asset('css/bootstrap-datetimepicker.min.css') }}">
-    <link rel="stylesheet" href="{{ asset('css/style.css') }}">
-    <link rel="stylesheet" href="{{ asset('css/style-loginRegister.css') }}">
-    <script type="text/javascript" src="{{ asset('js/jquery-1.10.2.js') }}"></script>
-
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+        <link rel="stylesheet" href="{{ asset('css/bootstrap-datetimepicker.min.css') }}">
+        <link rel="stylesheet" href="{{ asset('css/style.css') }}">
+        <link rel="stylesheet" href="{{ asset('css/style-loginRegister.css') }}">
+        <script src="{{ asset('js/jquery-1.10.2.js') }}"></script>
     {% endblock %}
 </head>
 <body >
-    {% block header %}
-        <header>
-            <nav class="navbar navbar-inverse" role="navigation">
-                <div class="container-fluid">
-                    <div class="navbar-header">
-                        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
-                            <span class="icon-bar"></span>
-                            <span class="icon-bar"></span>
-                            <span class="icon-bar"></span>
-                        </button>
-                        <a class="navbar-brand" href="{{ path('musicshare_index') }}"><img src="{{ asset('pictures/remixLogo2.jpg') }}" alt=""> <span id="logoFirstWord">Home</span><span id="logoSecondWord">Page</span></a>
-                    </div>
-                    <div class="collapse navbar-collapse" id="myNavbar">
-                        <ul class="nav navbar-nav navbar-right">
-
-                            {% if app.user %}
-                                {% if app.user.isAdmin() %}
-                                    <li class="dropdown">
-                                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Admin<span class="caret"></span></a>
-                                        <ul class="dropdown-menu" role="menu">
-                                        <li><a href="{{ path('admin_categories') }}">Categories</a></li>
-                                            <li><a href="{{ path('admin_users') }}">Users</a></li>
-                                        </ul>
-                                    </li>
-
-                            {% endif %}
-
-                            {% endif %}
-                            <li><a href="#"><span class="glyphicon glyphicon-info-sign"></span> About Us</a></li>
-                            <li><a href="#"><span class="glyphicon glyphicon-music"></span> Top 10</a></li>
-                            <li><a href="#"><span class="glyphicon glyphicon-phone-alt"></span> Contacts</a></li>
-
-                            {% if app.getUser()  %}
-                            <li id="logout"><a href="{{ path('security_logout') }}"><span class="glyphicon glyphicon-log-out"></span> Log Out</a></li>
-                            {% endif %}
-
-                        </ul>
-                    </div>
+{% block header %}
+    <header>
+        <nav class="navbar navbar-inverse" role="navigation">
+            <div class="container-fluid">
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <a class="navbar-brand" href="{{ path('musicshare_index') }}"><img src="{{ asset('pictures/remixLogo2.jpg') }}" alt=""> <span id="logoFirstWord">Home</span><span id="logoSecondWord">Page</span></a>
                 </div>
-            </nav>
-        </header>
-    {% endblock %}
+                <div class="collapse navbar-collapse" id="myNavbar">
+                    <ul class="nav navbar-nav navbar-right">
 
-    {% block body %}
-        <div id="myCarousel" class="carousel slide" data-ride="carousel">
-            <div class="carousel-inner" role="listbox" scroll="no">
-                <div class="item active">
-                    {% if app.user() is empty %}
-                    <h4 id="teamPresents">RemixTeam presents</h4>
-                    {% endif %}
-                    <img src="{{ asset('pictures/title_Logo.png') }}" id="titleLogo">
-                    <img src="{{ asset('pictures/title.png') }}" id="titleText">
-                    {% block main %}{% endblock %}
+                        {% if app.user %}
+                            {% if app.user.isAdmin() %}
+                                <li class="dropdown">
+                                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Admin<span class="caret"></span></a>
+                                    <ul class="dropdown-menu" role="menu">
+                                        <li><a href="{{ path('admin_categories') }}">Categories</a></li>
+                                        <li><a href="{{ path('admin_users') }}">Users</a></li>
+                                    </ul>
+                                </li>
+                            {% endif %}
+                        {% endif %}
+
+                        {% if app.getUser()  %}
+                            <li><a href="#" class="userNavbar"><span class="glyphicon glyphicon-user"></span> Welcome {{ app.user.username }}</a></li>
+                            <li><a href="{{ path('view_playlist', {'id': app.user.id}) }}"><span class="glyphicon glyphicon-music"></span> Playlist</a></li>
+                            <li id="logout"><a href="{{ path('security_logout') }}"><span class="glyphicon glyphicon-log-out"></span> Log Out</a></li>
+                        {% endif %}
+
+                    </ul>
                 </div>
             </div>
+        </nav>
+    </header>
+{% endblock %}
+
+{% block body %}
+    <div id="myCarousel" class="carousel slide" data-ride="carousel">
+        <div class="carousel-inner" role="listbox" scroll="no">
+            <div class="item active">
+                {% if app.user() is empty %}
+                    <h4 id="teamPresents">RemixTeam presents</h4>
+                {% endif %}
+                <img src="{{ asset('pictures/title_Logo.png') }}" id="titleLogo">
+                <img src="{{ asset('pictures/title.png') }}" id="titleText">
+                {% block main %}{% endblock %}
+            </div>
         </div>
-    {% endblock %}
+    </div>
+{% endblock %}
 
-    <footer class="container-fluid text-center">
+<footer class="container-fluid text-center">
 
-    </footer>
-    {% block javascripts %}
-
+</footer>
+{% block javascripts %}
     <script src="{{ asset('js/jquery-1.10.2.js') }}"></script>
     <script src="{{ asset('js/moment.min.js') }}"></script>
     <script src="{{ asset('js/bootstrap.js') }}"></script>
     <script src="{{ asset('js/bootstrap-datetimepicker.min.js') }}"></script>
-    {% endblock %}
-    </body>
+{% endblock %}
+</body>
 </html>
 

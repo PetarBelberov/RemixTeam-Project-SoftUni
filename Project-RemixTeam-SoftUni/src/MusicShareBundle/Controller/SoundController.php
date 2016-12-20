@@ -1,20 +1,15 @@
 <?php
 
 namespace MusicShareBundle\Controller;
-
 use Doctrine\Common\Collections\Criteria;
 use MusicShareBundle\Entity\Category;
 use MusicShareBundle\Entity\PlayList;
 use MusicShareBundle\Entity\Rating;
 use MusicShareBundle\Entity\Sound;
-use MusicShareBundle\Entity\User;
 use MusicShareBundle\Form\SoundType;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
-use Symfony\Component\Form\Extension\Core\Type\TextType;
-use Symfony\Component\HttpFoundation\BinaryFileResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
-use Symfony\Component\HttpFoundation\ResponseHeaderBag;
 use Symfony\Component\Routing\Annotation\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
 use Symfony\Component\HttpFoundation\JsonResponse;
@@ -106,7 +101,6 @@ class SoundController extends Controller
 
     /**
      * @Route("/categories", name="print_all_categories")
-     * @param $id
      * @return \Symfony\Component\HttpFoundation\Response
      */
     public function printAllCategories()
@@ -119,28 +113,25 @@ class SoundController extends Controller
         }
         return $this->render('song/all_categories.html.twig',
             ['categories' => $categories
-        ]);
+            ]);
     }
 
 
     /**
      * @Route("/catalog", name="print_all_songs")
-     * @param $id
      * @return \Symfony\Component\HttpFoundation\Response
      */
-    public function printAllSongs($id)
+    public function printAllSongs( )
     {
-        $categories = $this->getDoctrine()->getRepository(Category::class)->findAll();
         $songs = $this->getDoctrine()->getRepository(Sound::class)->findAll();
 
         if (!$songs) {
             return $this->render('error.html.twig', [
                 'error' => 'There is no content to be displayed'
             ]);
-
         }
         return $this->render('song/view_all.html.twig', [
-            'songs' => $songs,
+            'songs' => $songs
         ]);
     }
 

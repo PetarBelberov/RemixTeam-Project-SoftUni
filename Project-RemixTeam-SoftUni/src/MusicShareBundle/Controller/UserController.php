@@ -5,7 +5,6 @@ namespace MusicShareBundle\Controller;
 use MusicShareBundle\Entity\PlayList;
 use MusicShareBundle\Entity\Role;
 use MusicShareBundle\Entity\User;
-use MusicShareBundle\Form\PlayListType;
 use MusicShareBundle\Form\SoundType;
 use MusicShareBundle\Form\UserType;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
@@ -95,7 +94,7 @@ class UserController extends Controller
     }
 
     /**
-      * @param $id
+     * @param $id
      * @Route("/view_profile/{id}/uploads", name="view_user_uploads")
      * @return \Symfony\Component\HttpFoundation\Response
      */
@@ -108,7 +107,7 @@ class UserController extends Controller
         return $this->render('user/list_uploads.html.twig', [
             'songs' => $songs,
             'user' => $user,
-             'playList' => $playList
+            'playList' => $playList
 
         ]);
     }

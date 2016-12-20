@@ -16,7 +16,7 @@
                         <th>Category</th>
                         <th>Cover</th>
                         {% if app.getUser() and (app.getUser() or app.getUser().isAdmin()) %}
-                        <th>Listen</th>
+                            <th>Listen</th>
                             <th>Remove</th>
                         {% endif %}
                     </tr>
@@ -31,17 +31,17 @@
                             <td>{{ song.songAuthor }}</td>
                             <td>{{ song.category }}</td>
                             <td><img src="{{ cover_directory~'/'~song.coverFile }}" id="coverList"/></td>
-                        {% if app.getUser() and (app.getUser() or app.getUser().isAdmin()) %}
-                            <td>
-                                <object id="playlistObject" type="application/x-shockwave-flash" data="http://flash-mp3-player.net/medias/player_mp3_maxi.swf" >
-                                    <param name="movie" value="http://flash-mp3-player.net/medias/player_mp3_maxi.swf" />
-                                    <param name="bgcolor" value="#ffffff" />
-                                    <param name="FlashVars"  value="mp3={{ song_directory~'/'~song.file }}&amp;width=200&amp;height=20&amp;showstop=1&amp;showvolume=1&amp;showloading=always&amp;buttonwidth=15&amp;volumewidth=20&amp;volumeheight=7" />
-                                </object>
-                            </td>
+                            {% if app.getUser() and (app.getUser() or app.getUser().isAdmin()) %}
+                                <td>
+                                    <object id="playlistObject" type="application/x-shockwave-flash" data="http://flash-mp3-player.net/medias/player_mp3_maxi.swf" >
+                                        <param name="movie" value="http://flash-mp3-player.net/medias/player_mp3_maxi.swf" />
+                                        <param name="bgcolor" value="#ffffff" />
+                                        <param name="FlashVars"  value="mp3={{ song_directory~'/'~song.file }}&amp;width=200&amp;height=20&amp;showstop=1&amp;showvolume=1&amp;showloading=always&amp;buttonwidth=15&amp;volumewidth=20&amp;volumeheight=7" />
+                                    </object>
+                                </td>
 
-                            <td><a class="glyphicon glyphicon-trash" href="{{ path('remove_song_from_playlist', {'songId': song.id, 'listId': app.user.id}) }}"></a></td>
-                        {% endif %}
+                                <td><a class="glyphicon glyphicon-trash" href="{{ path('remove_song_from_playlist', {'songId': song.id, 'listId': app.user.id}) }}" onclick="return confirm('Are you sure?')"></a></td>
+                            {% endif %}
                         </tr>
 
                         <tr id="uploaderRow">

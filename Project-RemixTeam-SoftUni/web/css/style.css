@@ -494,3 +494,43 @@ object{
 
     vertical-align: middle;
 }
+a.userNavbar{
+    pointer-events: none;
+    cursor: default;
+}
+.likeAndDislike{
+    display: block;
+}
+#like, #dislike{
+    display: inline;
+}
+#liked_img, #disliked_img{
+    cursor: pointer;
+
+}
+
+#like image{
+    -webkit-transform: scale(1);
+    transform: scale(1);
+    -webkit-transition: .3s ease-in-out;
+    transition: .3s ease-in-out;
+}
+#like:hover img{
+    -webkit-transform: scale(1.3);
+    transform: scale(1.3);
+}
+
+#dislike image{
+    -webkit-transform: scale(1);
+    transform: scale(1);
+    -webkit-transition: .3s ease-in-out;
+    transition: .3s ease-in-out;
+}
+#dislike:hover img{
+    -webkit-transform: scale(1.3);
+    transform: scale(1.3);
+}
+#ratioP{
+    padding-top: 6px;
+    font-size: 16px;
+}

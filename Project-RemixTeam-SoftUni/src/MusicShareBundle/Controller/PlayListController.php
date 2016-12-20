@@ -155,6 +155,8 @@ class PlayListController extends Controller
 
     /**
      * @Security("is_granted('IS_AUTHENTICATED_FULLY')")
+     * @param $songId
+     * @param $listId
      * @Route("/playlist/removesong/{songId}/{listId}", name="remove_song_from_playlist")
      * @return \Symfony\Component\HttpFoundation\Response
      */
