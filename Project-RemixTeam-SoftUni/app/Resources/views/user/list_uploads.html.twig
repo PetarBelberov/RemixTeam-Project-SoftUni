@@ -6,12 +6,15 @@
 
 {% block main %}
     <div class="container body-content">
-        <div style="text-align: center; font-size: 40px">{{ user.username }}'s uploads</div>
+        <div id="userUploadsTitle">{{ user.username }}'s uploads</div>
+        <div style="text-align: center; font-size: 25px">
+            <a href="{{ path('view_user_favorites', {'id': user.id}) }}">See {{ user.username }}'s playlist</a>
+        </div>
         <br/>
         <div class="row">
             {% for song in songs %}
                 <div class="col-md-4">
-                    <article style="margin-bottom: 20px; margin-top: 10px">
+                    <article style="margin-bottom: 20px; margin-top: 10px;">
                         <br/>
                         <img src="{{ cover_directory~'/'~song.coverFile }}" style="width: 200px; height: auto; border: 2px black solid"/>
                         <br/>
@@ -23,4 +26,3 @@
         </div>
     </div>
 {% endblock %}
-

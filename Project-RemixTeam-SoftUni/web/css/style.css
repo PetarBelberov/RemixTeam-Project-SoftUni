@@ -534,3 +534,16 @@ a.userNavbar{
     padding-top: 6px;
     font-size: 16px;
 }
+
+#userUploadsTitle{
+    text-align: center;
+    font-size: 40px;
+}
+
+.col-sm-3 article{
+    margin-bottom: 20px;
+    margin-top: 10px;
+}
+#errorTitle{
+    text-align: center;
+}
