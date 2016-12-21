@@ -18,11 +18,15 @@
         <nav class="navbar navbar-inverse" role="navigation">
             <div class="container-fluid">
                 <div class="navbar-header">
+                    {% if app.user %}
+
+
                     <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
                     </button>
+                    {% endif %}
                     <a class="navbar-brand" href="{{ path('musicshare_index') }}"><img src="{{ asset('pictures/remixLogo2.jpg') }}" alt=""> <span id="logoFirstWord">Home</span><span id="logoSecondWord">Page</span></a>
                 </div>
                 <div class="collapse navbar-collapse" id="myNavbar">
@@ -41,7 +45,7 @@
                         {% endif %}
 
                         {% if app.getUser()  %}
-                            <li><a href="#" class="userNavbar"><span class="glyphicon glyphicon-user"></span> Welcome {{ app.user.username }}</a></li>
+                            <li><a href="{{ path('view_user_profile', {'id': app.user.id}) }}" class="userNavbar"><span class="glyphicon glyphicon-user"></span> Welcome {{ app.user.username }}</a></li>
                             <li><a href="{{ path('view_user_favorites', {'id': app.user.id}) }}"><span class="glyphicon glyphicon-music"></span> Favorites</a></li>
                             <li id="logout"><a href="{{ path('security_logout') }}"><span class="glyphicon glyphicon-log-out"></span> Log Out</a></li>
                         {% endif %}
@@ -69,7 +73,13 @@
 {% endblock %}
 
 <footer class="container-fluid text-center">
-
+<p>Project by @RemixTeam:
+    <br/>
+    @Petar_Belberov
+    <br/>
+    @TheRedShoko
+    <br/>
+    @Slavyana</p>
 </footer>
 {% block javascripts %}
     <script src="{{ asset('js/jquery-1.10.2.js') }}"></script>

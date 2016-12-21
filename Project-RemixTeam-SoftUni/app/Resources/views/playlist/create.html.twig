@@ -1,0 +1,30 @@
+{% extends 'base.html.twig' %}
+
+{% block main %}
+
+
+    <div id="id04">
+
+        {{ form_start(form, {'attr': {'class': 'uploadForm'}}) }}
+        <div class="imgcontainer">
+            <img src="{{ asset('pictures/remixLogo2.jpg') }}" alt="Avatar" class="avatar">
+            <p class="formText">Playlist</p>
+        </div>
+
+        <div class="container">
+            {{ form_row(form.name, { 'attr': {
+                'placeholder': 'Song name' }})  }}
+            <br/>
+            <button type="submit">Create playlist</button>
+            {{ form_end(form) }}
+        </div>
+    </div>
+
+
+{% endblock %}
+
+
+
+
+
+

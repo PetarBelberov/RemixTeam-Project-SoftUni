@@ -25,6 +25,9 @@ body{
 .navbar-brand{
     display: inline-flex;
 }
+.navbar-toggle{
+    width: auto;
+}
 
 #myCarousel{
     background-image: url("../pictures/orig_152438.jpg");
@@ -495,8 +498,7 @@ object{
     vertical-align: middle;
 }
 a.userNavbar{
-    pointer-events: none;
-    cursor: default;
+    cursor: pointer;
 }
 .likeAndDislike{
     display: block;

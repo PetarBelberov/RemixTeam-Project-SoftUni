@@ -1,0 +1,60 @@
+
+
+{% extends 'base.html.twig' %}
+
+{% block main %}
+
+    <div class="container body-content" id="listUsers">
+        <div class="well" id="wellPlaylist">
+            <h2 class="listTitle">{{ playlist.name }}</h2>
+            <div class="row">
+                <table class="table table-striped table-hover ">
+                    <thead id="playlistHead">
+                    <tr>
+                        <th>Song Name</th>
+                        <th>Song Author</th>
+                        <th>Category</th>
+                        <th>Cover</th>
+                        {% if app.getUser() and (app.getUser() or app.getUser().isAdmin()) %}
+                            <th>Listen</th>
+                            <th>Remove</th>
+                        {% endif %}
+                    </tr>
+                    </thead>
+                    <tbody>
+
+                    {% for song in songs %}
+                        <tr>
+                        <tr id="catalogRows">
+                        <tr  id="playlistSongs">
+                            <td><a href="{{ path('song_view', {'id': song.id}) }}">{{ song.songName }}</a></td>
+                            <td>{{ song.songAuthor }}</td>
+                            <td>{{ song.category }}</td>
+                            <td><img src="{{ cover_directory~'/'~song.coverFile }}" id="coverList"/></td>
+                            {% if app.getUser() and (app.getUser() or app.getUser().isAdmin()) %}
+                                <td>
+                                    <object id="playlistObject" type="application/x-shockwave-flash" data="http://flash-mp3-player.net/medias/player_mp3_maxi.swf" >
+                                        <param name="movie" value="http://flash-mp3-player.net/medias/player_mp3_maxi.swf" />
+                                        <param name="bgcolor" value="#ffffff" />
+                                        <param name="FlashVars"  value="mp3={{ song_directory~'/'~song.file }}&amp;width=200&amp;height=20&amp;showstop=1&amp;showvolume=1&amp;showloading=always&amp;buttonwidth=15&amp;volumewidth=20&amp;volumeheight=7" />
+                                    </object>
+                                </td>
+
+                                <td><a class="glyphicon glyphicon-trash" href="{{ path('remove_song_from_playlist', {'songId': song.id, 'listId': app.user.id}) }}" onclick="return confirm('Are you sure?')"></a></td>
+                            {% endif %}
+                        </tr>
+
+                        <tr id="uploaderRow">
+                            <th id="uploaderLabel">Uploader: </th>
+                            <td id="uploaderTd"><a href="{{ path('view_user_uploads', {'id': song.uploader.id}) }}" id="uploaderLink">{{ song.uploader }}</a></td>
+                        </tr>
+
+                    {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+
+{% endblock %}

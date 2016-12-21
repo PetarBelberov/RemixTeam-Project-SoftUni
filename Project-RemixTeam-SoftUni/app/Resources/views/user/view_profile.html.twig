@@ -8,17 +8,18 @@
 
     <div style="text-align: center;">
         <span style="font-size: 50px;">
-            [Avatar]
-            <br/>
             {{ user.username }}
             <br/>
         </span>
         <span style="text-align: center;font-size: 20px">
+            <br/>
             Full name: {{ user.fullName }}
             <br/>
             Email: {{ user.email }}
             <br/>
+            <br/>
             <a href="{{ path('view_user_uploads', {'id': user.id}) }}">View user songs</a>
+            <br/>
             <a href="{{ path('view_user_favorites', {'id': user.id}) }}">View user favorite songs</a>
         </span>
     </div>

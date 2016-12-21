@@ -195,8 +195,9 @@ class SoundController extends Controller
             ->find($id);
 
         $songs = $category->getSongs()->toArray();
-        return $this->render('song/list.html.twig',
-            ['songs'=>$songs]);
+        return $this->render('song/list.html.twig', [
+            'songs'=>$songs
+        ]);
     }
 
 

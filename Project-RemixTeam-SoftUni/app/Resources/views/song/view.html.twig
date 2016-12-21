@@ -25,7 +25,7 @@
             <div id="dislike"><img id="disliked_img" src="/pictures/dislike.png" alt="Dislike" style="width:42px;height:42px;border:0;"></div>
         </div>
         <div>
-            <p id="ratioP">Likes {{ ratio.like }} /Dislikes {{ ratio.dislike }} </p>
+            <p id="ratioP">Likes {{ ratio.like }} / Dislikes {{ ratio.dislike }} </p>
         </div>
         {% endif %}
 
@@ -59,7 +59,7 @@
         $(document).ready(function(){
             $("#like").click(function(){
                 $.get("/song/like/{{song.id}}", function(data, status){
-                    $('#ratioP').text("Likes " + data[0].like +" /Dislikes " + data[0].dislike )
+                    $('#ratioP').text("Likes " + data[0].like +" / Dislikes " + data[0].dislike )
                 });
             });
         });
@@ -67,7 +67,7 @@
             $("#dislike").click(function(){
                 $.get("/song/dislike/{{song.id}}", function(data, status){
 
-                    $('#ratioP').text("Likes " + data[0].like +" /Dislikes " + data[0].dislike );
+                    $('#ratioP').text("Likes " + data[0].like +" / Dislikes " + data[0].dislike );
                 });
             });
         });
