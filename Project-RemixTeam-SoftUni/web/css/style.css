@@ -549,3 +549,7 @@ a.userNavbar{
 #errorTitle{
     text-align: center;
 }
+#profileContent{
+    text-align: center;
+    margin-bottom: 25px;
+}

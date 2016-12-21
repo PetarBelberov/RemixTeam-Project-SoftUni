@@ -16,7 +16,7 @@
                         <th>Song Author</th>
                         <th>Category</th>
                         <th>Cover</th>
-                        {% if app.getUser() == user or app.getUser().isAdmin() %}
+                        {% if app.getUser() and (app.getUser() == user or app.getUser().isAdmin()) %}
                             <th>Listen</th>
                             <th>Remove</th>
                         {% endif %}
@@ -32,7 +32,7 @@
                             <td>{{ song.songAuthor }}</td>
                             <td>{{ song.category }}</td>
                             <td><img src="{{ cover_directory~'/'~song.coverFile }}" id="coverList"/></td>
-                            {% if app.getUser() == user or app.getUser().isAdmin() %}
+                            {% if app.getUser() and (app.getUser() == user or app.getUser().isAdmin()) %}
                                 <td>
                                     <object id="playlistObject" type="application/x-shockwave-flash" data="http://flash-mp3-player.net/medias/player_mp3_maxi.swf" >
                                         <param name="movie" value="http://flash-mp3-player.net/medias/player_mp3_maxi.swf" />
@@ -47,7 +47,7 @@
 
                         <tr id="uploaderRow">
                             <th id="uploaderLabel">Uploader: </th>
-                            <td id="uploaderTd"><a href="{{ path('view_user_uploads', {'id': song.uploader.id}) }}" id="uploaderLink">{{ song.uploader }}</a></td>
+                            <td id="uploaderTd"><a href="{{ path('view_user_profile', {'id': user.id}) }}" id="uploaderLink">{{ song.uploader }}</a></td>
                         </tr>
 
                     {% endfor %}

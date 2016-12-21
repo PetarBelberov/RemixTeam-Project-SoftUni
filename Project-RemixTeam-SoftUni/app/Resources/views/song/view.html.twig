@@ -39,7 +39,7 @@
         <div class="footer">
             {% if app.getUser() %}
             <div>
-                <a class="glyphicon glyphicon-download" title="Download" href="{{ asset('uploads/songs/') }}{{ song.file }}" download></a>
+                <a class="glyphicon glyphicon-download" title="Download" href="{{ asset('uploads/songs/') }}{{ song.file }}" download="{{ song.songAuthor }} - {{ song.songName }}"></a>
             </div>
             {% endif %}
 

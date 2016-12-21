@@ -32,7 +32,7 @@
 
                         <tr id="uploaderRow">
                             <th id="uploaderLabel">Uploader: </th>
-                            <td id="uploaderTd"><a href="{{ path('view_user_uploads', {'id': song.uploader.id}) }}" id="uploaderLink">{{ song.uploader }}</a></td>
+                            <td id="uploaderTd"><a href="{{ path('view_user_profile', {'id': song.uploader.id}) }}" id="uploaderLink">{{ song.uploader }}</a></td>
                         </tr>
 
                     {% endfor %}

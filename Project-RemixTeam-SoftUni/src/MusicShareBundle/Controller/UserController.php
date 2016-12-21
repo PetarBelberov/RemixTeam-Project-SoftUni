@@ -73,7 +73,6 @@ class UserController extends Controller
     }
 
     /**
-     * @Security("is_granted('IS_AUTHENTICATED_FULLY')")
      * @Route("/view_profile/{id}", name="view_user_profile")
      * @param $id
      * @return \Symfony\Component\HttpFoundation\Response
@@ -139,6 +138,7 @@ class UserController extends Controller
     }
 
     /**
+     * @Security("is_granted('IS_AUTHENTICATED_FULLY')")
      * @Route("favorites/add/{songId}", name="add_to_favorites")
      * @return \Symfony\Component\HttpFoundation\RedirectResponse|\Symfony\Component\HttpFoundation\Response
      */
@@ -166,6 +166,7 @@ class UserController extends Controller
     }
 
     /**
+     * @Security("is_granted('IS_AUTHENTICATED_FULLY')")
      * @Route("favorites/remove/{songId}", name="remove_from_favorites")
      * @return \Symfony\Component\HttpFoundation\RedirectResponse|\Symfony\Component\HttpFoundation\Response
      */
